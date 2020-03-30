@@ -6,92 +6,98 @@ from SmitOpnuSvaeði import SmitOpnuSvaeði
 from pygame.locals import *
 
 class Byrjun:
-    #SET UP COLORS
-    WHITE = (255, 255, 255)#bakgrunnur
-    BLUE = (0, 0, 255)#heilbrigðir
-    ORANGE = (255, 153, 51)#veikir
-    PINK = (255, 0, 255)#ekki lengur veikir
+    def keyrsla(self):
+        #SET UP COLORS
+        self.WHITE = (255, 255, 255)#bakgrunnur
+        self.BLUE = (0, 0, 255)#heilbrigðir
+        self.ORANGE = (255, 153, 51)#veikir
+        self.PINK = (255, 0, 255)#ekki lengur veikir
+        self.BLACK = (0, 0, 0) #Látnir
 
-    #SET UP PYGAME
-    pygame.init()
-    
-    #SET UP WINDOW
-    xmax = 800 
-    ymax = 400 
-    windowSurface = pygame.display.set_mode((xmax, ymax))
-    pygame.display.set_caption('Covid-19 hermir')
+        #SET UP PYGAME
+        pygame.init()
+        
+        #SET UP WINDOW
+        self.xmax = 800 
+        self.ymax = 400 
+        self.windowSurface = pygame.display.set_mode((self.xmax, self.ymax))
+        pygame.display.set_caption('Covid-19 hermir')
 
-    FRAMES_PER_SECOND = 30
-    fpsClock = pygame.time.Clock()
-    
-    n=80 #number of points
-    n_infected = 5 #number of infected
-    n_total = n + n_infected
-    speed = 0.01
-    radius = 5
-    radius_x = radius/xmax
-    radius_y = radius/ymax
-    
+        FRAMES_PER_SECOND = 30
+        fpsClock = pygame.time.Clock()
+        
+        self.n=5 #number of points
+        self.n_infected = 5 #number of infected
+        self.n_total = n + n_infected
+        speed = 0.01
+        self.radius = 5
+        self.radius_x = radius/xmax
+        self.radius_y = radius/ymax
+        
 
-    #allir byrja random
-    x = np.random.rand(n_total)
-    y = np.random.rand(n_total)
+        #allir byrja random
+        self.x = np.random.rand(n_total)
+        self.y = np.random.rand(n_total)
 
-    #hraði er random?
-    vx = speed * np.random.rand(n_total)
-    vy = speed * np.random.rand(n_total)
+        #hraði er random?
+        self.vx = speed * np.random.rand(n_total)
+        self.vy = speed * np.random.rand(n_total)
 
-    #Hverjir eru sýktir
-    infected  = []
-    for i in range(n):
-        infected.append(0)
-    for i in range(n_infected):
-        infected.append(1)
-    
+        #Hverjir eru sýktir
+        self.infected  = []
+        for i in range(n):
+            infected.append(0)
+        for i in range(n_infected):
+            infected.append(1)
+        
 
-    #tónlist
-    #music = pygame.mixer.music.load("music.mp3")
-    #pygame.mixer.music.play()
-    
-    #aðal loopan
-    while True:
-        #clear screen
-        windowSurface.fill(WHITE)
+        #tónlist
+        #music = pygame.mixer.music.load("music.mp3")
+        #pygame.mixer.music.play()
+        
+        #aðal loopan
+        while True:
+            #clear screen
+            windowSurface.fill(WHITE)
+            UPDATE_POSITION(self)
+            draw(self)
 
 
-        #UPDATE POSITIONS                
-        for i in range(n_total):
+    def UPDATE_POSITIONS(self):                
+        for i in range(self.n_total):
             #SKOPPA AF VEGG
-            if x[i] < radius_x or x[i] > 1-radius_x:
-                vx[i] = -1 * vx[i]
-            if y[i] < radius_y or y[i] > 1-radius_y:
-                vy[i] = -1 * vy[i]
+            if self.x[i] < self.radius_x or self.x[i] > 1-self.radius_x:
+                self.vx[i] = -1 * self.vx[i]
+            if self.y[i] < self.radius_y or self.y[i] > 1-self.radius_y:
+                self.vy[i] = -1 * self.vy[i]
 
                 
             adrir_boltar = n_total-i-1
             for j in range(adrir_boltar):
-                distance = math.hypot(int(x[i] * xmax) - int(x[j+i+1] * xmax), int(y[i] * ymax)- int(y[j+i+1]* ymax))
-                if distance <= 2*radius:
-                    vx[i+j+1] = -1 * vx[i+j+1]
-                    vy[i+j+1] = -1 * vy[i+j+1]
-                    vx[i] = -1 * vx[i]
-                    vy[i] = -1 * vy[i]
-                    if infected[i] == 1: # and SmitOpnuSvaeði == True:
-                        infected[j+i+1] = 1
-                    if infected[j+i+1] == 1: # and SmitOpnuSvaeði == True:
-                        infected[i] = 1
-            x[i] += vx[i]
-            y[i] += vy[i]
+                distance = math.hypot(int(self.x[i] * self.xmax) - int(self.x[j+i+1] * self.xmax), int(self.y[i] * self.ymax)- int(self.y[j+i+1]* self.ymax))
+                if distance <= 2*self.radius:
+                    self.vx[i+j+1] = -1 * self.vx[i+j+1]
+                    self.vy[i+j+1] = -1 * self.vy[i+j+1]
+                    self.vx[i] = -1 * self.vx[i]
+                    self.vy[i] = -1 * self.vy[i]
+                    if self.infected[i] == 1 and SmitOpnuSvaeði.roll_dice() == True:
+                        self.infected[j+i+1] = 1
+                    if self.infected[j+i+1] == 1 and SmitOpnuSvaeði.roll_dice() == True:
+                        self.infected[i] = 1
+            self.x[i] += self.vx[i]
+            self.y[i] += self.vy[i]
             
         
         #redraw
+    def draw(self):
         for i in range(n_total):
-            if infected[i] == 0:
-                pygame.draw.circle(windowSurface, BLUE, \
-                                    (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
+            if self.infected[i] == 0:
+                pygame.draw.circle(self.windowSurface, self.BLUE, \
+                                    (int(self.xmax * self.x[i]), int(self.ymax * self.y[i])), self.radius, 0)
             else:
-                pygame.draw.circle(windowSurface, ORANGE, \
-                                    (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
+                pygame.draw.circle(self.windowSurface, self.ORANGE, \
+                                    (int(self.xmax * self.x[i]), int(self.ymax * self.y[i])), self.radius, 0)
+            
         
         #event handling
         for event in pygame.event.get():
@@ -101,3 +107,4 @@ class Byrjun:
 
         pygame.display.update()
         fpsClock.tick(FRAMES_PER_SECOND)
+        
