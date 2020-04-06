@@ -38,3 +38,12 @@ class Einstaklingur():
             e.vx = -1 * e.vx
         if e.y < e.radius or e.y > u.ymax-e.radius:
             e.vy = -1 * e.vy
+
+    def arekstur(self,e,einstaklingur):
+        for j in einstaklingur:
+            distance = math.hypot(int(e.x * u.xmax) - int(j.x * u.xmax), int(e.y * u.ymax)- int(j.y* u.ymax))
+            if distance <= 2*e.radius:
+                j.vx = -1 * j.vx        
+                j.vy = -1 * j.vy
+                e.vx = -1 * e.vx
+                e.vy = -1 * e.vy
