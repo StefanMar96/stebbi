@@ -20,7 +20,7 @@ class Keyrsla:
     h = H.Hopur()
     u = U.Uppsetning()
 
-    h.svaedi_hopar()
+    h.people()
 
     #Aðal loopan
     while True:
@@ -32,7 +32,7 @@ class Keyrsla:
         for e in h.einstaklingur:
 
             #SKOPPA AF VEGG
-            h.svaedaskopp(e)
+            h.veggskopp(e)
 
             #Færa leikmenn á borði
             e.move(e)
@@ -40,9 +40,11 @@ class Keyrsla:
             #Teikna einstaklinga
             e.teikna(e.x,e.y,u.radius)
 
+            #print(e.x,e.y)
+            
         #Látum bolta skoppa af hvor öðrum
         h.arekstur(h.einstaklingur)
-           
+        
         #event handling
         for event in pygame.event.get():
             if event.type == QUIT:
