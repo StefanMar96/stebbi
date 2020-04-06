@@ -13,7 +13,7 @@ class Hopur():
     def __init__(self):
         #Færa í sér klasann hópur, gera þar fall með árekstur, sá klasi höndlar 1 svæði
         #BREYTILEGT
-        self.n=50 #number of points
+        self.n=100 #number of points
 
         #Listi af einstaklingum
         self.einstaklingur = []
@@ -21,39 +21,47 @@ class Hopur():
         self.svaedi = []
 
         #Hæsta x gildi svæðis
-        self.x = u.xmax
+        self.xmaxx = u.xmax
         #Hæsta y gildi svæðis
-        self.y = u.ymax
+        self.ymaxx = u.ymax
         #Lægsta x gildi svæðis
-        self.z = 0
+        self.xmin = 0
         #Lægsta y gildi svæðis
-        self.w = 0
+        self.ymin = 0
 
     #Búum til svæði og teiknum hópa
-    def svaedi(self):
+    def svaedi_hopar(self):
         #Fjöldi reita x
         l = 4
         #Fjöldi svæða y
         m = 2
+        #Heildarfjöldi svæða
+        k = 8
 
         #Fjöldi fólks í hóp
         self.n = 20
 
         #Búum til svæði
         for i in range(l):
-            self.x = u.xmax - (m-1-i)*u.xmax/l
-            self.z = i*(u.xmax/l)
+            self.xmaxx = u.xmax - (l-1-i)*u.xmax/l
+            self.xmin = i*(u.xmax/l)
             for j in range(m):
-                self.y = u.ymax - (m-1-i)*u.ymax/m
-                self.w = i*(u.ymax/m)
-            s = self.Svaedi(self.x, self.y, self.z, self.w)
-            self.svaedi.append(s)
+                self.ymaxx = u.ymax - (m-1-j)*u.ymax/m
+                self.ymin = j*(u.ymax/m)
+                print(self.xmaxx,self.ymaxx,self.xmin,self.ymin)
+                #pygame.draw.rect(u.windowSurface, u.BLACK, (self.z, self.w, self.x-self.z, self.y-self.w),0)
             self.people()
             
+    def svaedaskopp(self,e):
+        if e.x < self.xmin+u.radius or e.x > self.xmaxx-u.radius:
+            e.vx = -1 * e.vx
+        if e.y < self.ymin+u.radius or e.y > self.ymaxx-u.radius:
+            e.vy = -1 * e.vy
+
     #Búum til n marga einstaklinga á opnu svæði
     def people(self):
         for i in range(self.n):
-            e = E.Einstaklingur(self.x, self.y, self.z, self.w, u.radius)
+            e = E.Einstaklingur(u.xmax, u.ymax, u.radius)
             self.einstaklingur.append(e)
 
     #Boltar skoppa af veggjum
@@ -73,4 +81,5 @@ class Hopur():
                     einstaklingur[j].vy = -1 * einstaklingur[j].vy
                     einstaklingur[i].vx = -1 * einstaklingur[i].vx
                     einstaklingur[i].vy = -1 * einstaklingur[i].vy
-                    einstaklingur[i].sykist()
+                    if(einstaklingur[j].litur==u.ORANGE):
+                        einstaklingur[i].sykist()
