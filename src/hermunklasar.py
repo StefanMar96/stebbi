@@ -96,25 +96,31 @@ class Keyrsla:
 
         telja = 0
 
-        #UPDATE POSITIONS                
-        for e in einstaklingur:
+        #UPDATE POSITIONS
+        for i in range(n):
+        #for e in einstaklingur:
 
-            telja +=1
+            #telja +=1
             #Skoppa af boltum
             #e.arekstur(e,einstaklingur)
                 #if i.litur == u.ORANGE:
                  #   j.litur == u.ORANGE
     
-            for j in range(telja+1,n):
-                e2 = einstaklingur[j]
-                distance = math.hypot(int(e.x * u.xmax) - int(e2.x * u.xmax), int(e.y * u.ymax)- int(e2.y* u.ymax))
+            #for j in range(telja+1,n):
+            for j in range(i+1,n):
+                #e2 = einstaklingur[j]
+                #distance = math.hypot(int(e.x * u.xmax) - int(e2.x * u.xmax), int(e.y * u.ymax)- int(e2.y* u.ymax))
+                distance = math.hypot(einstaklingur[i].x - einstaklingur[j].x, einstaklingur[i].y - einstaklingur[j].y)
+                #print(distance)
                 if distance <= 2*u.radius:
-                    e2.vx = -1 * e2.vx        
-                    e2.vy = -1 * e2.vy
-                    e.vx = -1 * e.vx
-                    e.vy = -1 * e.vy
+                    einstaklingur[j].vx = -1 * einstaklingur[j].vx        
+                    einstaklingur[j].vy = -1 * einstaklingur[j].vy
+                    einstaklingur[i].vx = -1 * einstaklingur[i].vx
+                    einstaklingur[i].vy = -1 * einstaklingur[i].vy
+
 
             #SKOPPA AF VEGG
+            e = einstaklingur[i]
             e.veggskopp(e)
 
             #Færa leikmenn á borði
