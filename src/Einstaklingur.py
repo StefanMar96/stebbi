@@ -11,18 +11,18 @@ u = U.Uppsetning()
 
 class Einstaklingur():
 
-    def __init__(self,x,y,z,w,radius):
-        self.x = random.randrange(z+radius, x-radius)
-        self.y = random.randrange(w+radius, y-radius)
-        self.vx = random.randrange(-2, 3)
-        self.vy = random.randrange(-2, 3)
+    def __init__(self,x,y,radius):
+        self.x = random.randrange(radius, x-radius)
+        self.y = random.randrange(radius, y-radius)
+        self.vx = random.randrange(-1, 1)
+        self.vy = random.randrange(-1, 1)
         self.litur = u.BLUE
         self.byrjar_syktur()
 
     #Þetta fall ákvarðar hve margir byrja sýktir, breyta?
     def byrjar_syktur(self):
         number = random.randint(1, 100)
-        if number >= 95:
+        if number >= 60:
             self.litur = u.ORANGE
 
     #Fall sem ákvarðar hvort einstaklingur smitast við árekstur
@@ -39,3 +39,6 @@ class Einstaklingur():
     def move(self, e):
         e.x += e.vx
         e.y += e.vy
+
+
+
