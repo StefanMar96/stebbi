@@ -50,17 +50,15 @@ class Keyrsla:
 
             #SKOPPA AF ÖÐRUM
             #adrir_boltar = n_total-i-1
-            #for j in range(e+1, n):
-            #   distance = math.hypot(int(e.x * xmax) - int(j.x * xmax), int(e.y * ymax)- int(j.y* ymax))
-            #  if distance <= 2*e.radius:
-            #     j.vx = -1 * j.vx
-                #    j.vy = -1 * j.vy
-                #   e.vx = -1 * i.vx
-                #  e.vy = -1 * i.vy
-                    #if infected[i] == 1 and SmitOpnuSvaeði.roll_dice() == True:
-                    #   infected[j] = 1
-                    #if infected[j] == 1 and SmitOpnuSvaeði.roll_dice() == True:
-                    #   infected[i] = 1
+        for i,j in einstaklingur:
+            distance = math.hypot(int(i.x * u.xmax) - int(j.x * u.xmax), int(i.y * u.ymax)- int(j.y* u.ymax))
+            if distance <= 2*e.radius:
+                j.vx = -1 * j.vx        
+                j.vy = -1 * j.vy
+                i.vx = -1 * i.vx
+                i.vy = -1 * i.vy
+                #if i.litur == u.ORANGE:
+                 #   j.litur == u.ORANGE
                 
             
         #event handling
