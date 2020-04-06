@@ -28,9 +28,6 @@ class Keyrsla:
         #clear screen
         u.windowSurface.fill(u.WHITE)
 
-        #Látum bolta skoppa af hvor öðrum
-        h.arekstur(h.einstaklingur)
-
         #Keyrum smit á opnu svæði
         for e in h.einstaklingur:
 
@@ -42,7 +39,12 @@ class Keyrsla:
 
             #Teikna einstaklinga
             e.teikna(e.x,e.y,u.radius)
+
+            #print(e.x,e.y)
             
+        #Látum bolta skoppa af hvor öðrum
+        h.arekstur(h.einstaklingur)
+        
         #event handling
         for event in pygame.event.get():
             if event.type == QUIT:
