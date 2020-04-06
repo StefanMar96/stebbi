@@ -16,11 +16,12 @@ class Keyrsla:
     FRAMES_PER_SECOND = 30
     fpsClock = pygame.time.Clock()
 
+    #Færa í sér klasa, gera þar fall með árekstur, sá klasi höndlar 1 svæði
     #BREYTILEGT
     n=50 #number of points
 
     #Listi af einstaklingum
-    einstaklilngur = []
+    einstaklingur = []
 
     #Búum til hlut af klasanum Uppsetning
     u = U.Uppsetning()
@@ -28,40 +29,41 @@ class Keyrsla:
     #Búum til n marga einstaklinga
     for i in range(n):
         e = E.Einstaklingur(u.xmax, u.ymax, u.radius)
-        einstaklilngur.append(e)
+        einstaklingur.append(e)
 
+    ###Hingað
+    
+    #Jei
+
+    ##Kalla á föllin fyrir hópana, í hópunum kalla á einstakling
     #Aðal loopan
     while True:
 
         #clear screen
         u.windowSurface.fill(u.WHITE)
 
-        #UPDATE POSITIONS                
-        for e in einstaklilngur:
+        telja = 0
+
+        #UPDATE POSITIONS
+        for i in range(n):
+            for j in range(i+1,n):
+                distance = math.hypot(einstaklingur[i].x - einstaklingur[j].x, einstaklingur[i].y - einstaklingur[j].y)
+                if distance <= 2*u.radius:
+                    einstaklingur[j].vx = -1 * einstaklingur[j].vx        
+                    einstaklingur[j].vy = -1 * einstaklingur[j].vy
+                    einstaklingur[i].vx = -1 * einstaklingur[i].vx
+                    einstaklingur[i].vy = -1 * einstaklingur[i].vy
+
+
+            #SKOPPA AF VEGG
+            e = einstaklingur[i]
+            e.veggskopp(e)
 
             #Færa leikmenn á borði
             e.move(e)
 
-            #SKOPPA AF VEGG
-            e.veggskopp(e)
-
             #Teikna einstaklinga
-            e.teikna(e.x,e.y,e.radius)
-
-            #SKOPPA AF ÖÐRUM
-            #adrir_boltar = n_total-i-1
-            #for j in range(e+1, n):
-            #   distance = math.hypot(int(e.x * xmax) - int(j.x * xmax), int(e.y * ymax)- int(j.y* ymax))
-            #  if distance <= 2*e.radius:
-            #     j.vx = -1 * j.vx
-                #    j.vy = -1 * j.vy
-                #   e.vx = -1 * i.vx
-                #  e.vy = -1 * i.vy
-                    #if infected[i] == 1 and SmitOpnuSvaeði.roll_dice() == True:
-                    #   infected[j] = 1
-                    #if infected[j] == 1 and SmitOpnuSvaeði.roll_dice() == True:
-                    #   infected[i] = 1
-                
+            e.teikna(e.x,e.y,u.radius)
             
         #event handling
         for event in pygame.event.get():
