@@ -11,18 +11,24 @@ u = U.Uppsetning()
 
 class Einstaklingur():
 
-    def __init__(self,x,y,radius):
-        self.x = random.randint(radius, x-radius)
-        self.y = random.randint(radius, y-radius)
+    def __init__(self,x,y,z,w,radius):
+        self.x = random.randrange(z+radius, x-radius)
+        self.y = random.randrange(w+radius, y-radius)
         self.vx = random.randrange(-2, 3)
         self.vy = random.randrange(-2, 3)
         self.litur = u.BLUE
-        self.syktur()
+        self.byrjar_syktur()
 
     #Þetta fall ákvarðar hve margir byrja sýktir, breyta?
-    def syktur(self):
+    def byrjar_syktur(self):
         number = random.randint(1, 100)
         if number >= 95:
+            self.litur = u.ORANGE
+
+    #Fall sem ákvarðar hvort einstaklingur smitast við árekstur
+    def sykist(self):
+        number = random.randint(1, 100)
+        if number >= 50:
             self.litur = u.ORANGE
 
     #Þetta fall teiknar kúlurnar
@@ -33,10 +39,3 @@ class Einstaklingur():
     def move(self, e):
         e.x += e.vx
         e.y += e.vy
-
-    #Boltar skoppa af veggjum
-    def veggskopp(self, e):
-        if e.x < u.radius or e.x > u.xmax-u.radius:
-            e.vx = -1 * e.vx
-        if e.y < u.radius or e.y > u.ymax-u.radius:
-            e.vy = -1 * e.vy
