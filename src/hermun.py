@@ -50,6 +50,7 @@ class Keyrsla:
 
             #SKOPPA AF ÖÐRUM
             #adrir_boltar = n_total-i-1
+            
         for i,j in einstaklingur:
             distance = math.hypot(int(i.x * u.xmax) - int(j.x * u.xmax), int(i.y * u.ymax)- int(j.y* u.ymax))
             if distance <= 2*e.radius:

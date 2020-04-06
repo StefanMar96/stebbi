@@ -27,9 +27,8 @@ class Einstaklingur():
     u = U.Uppsetning()
 
     def __init__(self,x,y,radius):
-        self.x = random.randrange(radius, x-radius)
+        self.x = random.randint(radius, x-radius)
         self.y = random.randint(radius, y-radius)
-        self.radius = radius
         self.vx = random.randrange(-2, 3)
         self.vy = random.randrange(-2, 3)
         self.litur = u.BLUE
@@ -43,7 +42,7 @@ class Einstaklingur():
 
     #Þetta fall teiknar kúlurnar
     def teikna(self,x,y,radius):
-        pygame.draw.circle(u.windowSurface, self.litur, (x,y), radius, 0)
+        pygame.draw.circle(u.windowSurface, self.litur, (x,y), u.radius, 0)
 
     #Færa kúlur á borði
     def move(self, e):
@@ -52,9 +51,9 @@ class Einstaklingur():
 
     #Boltar skoppa af veggjum
     def veggskopp(self, e):
-        if e.x < e.radius or e.x > u.xmax-e.radius:
+        if e.x < e.radius or e.x > u.xmax-u.radius:
             e.vx = -1 * e.vx
-        if e.y < e.radius or e.y > u.ymax-e.radius:
+        if e.y < e.radius or e.y > u.ymax-u.radius:
             e.vy = -1 * e.vy
 
     #def arekstur(self,e,einstaklingur):
