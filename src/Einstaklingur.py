@@ -14,8 +14,8 @@ class Einstaklingur():
     def __init__(self,x,y,radius):
         self.x = random.randrange(radius, x-radius)
         self.y = random.randrange(radius, y-radius)
-        self.vx = random.randrange(-1, 1)
-        self.vy = random.randrange(-1, 1)
+        self.vx = random.randrange(-3, 3)
+        self.vy = random.randrange(-3, 3)
         self.litur = u.BLUE
         self.byrjar_syktur()
 
