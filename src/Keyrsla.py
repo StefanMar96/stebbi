@@ -32,6 +32,8 @@ class Keyrsla:
         einstaklingur.append(e)
 
     ###Hingað
+    
+    #Jei
 
     ##Kalla á föllin fyrir hópana, í hópunum kalla á einstakling
     #Aðal loopan
