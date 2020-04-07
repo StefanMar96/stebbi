@@ -21,9 +21,9 @@ class Hopur():
         self.svaedi = []
 
         #Hæsta x gildi svæðis
-        self.xmaxx = u.xmax
+        self.xmaxx = 0 #u.xmax
         #Hæsta y gildi svæðis
-        self.ymaxx = u.ymax
+        self.ymaxx = 0 #u.ymax
         #Lægsta x gildi svæðis
         self.xmin = 0
         #Lægsta y gildi svæðis
@@ -32,14 +32,14 @@ class Hopur():
     #Búum til svæði og teiknum hópa
     def svaedi_hopar(self):
         #Fjöldi reita x
-        l = 4
+        l = 2
         #Fjöldi svæða y
         m = 2
         #Heildarfjöldi svæða
-        k = 8
+        k = 4
 
         #Fjöldi fólks í hóp
-        self.n = 20
+        self.n = 25
 
         #Búum til svæði
         for i in range(l):
@@ -49,9 +49,10 @@ class Hopur():
                 self.ymaxx = u.ymax - (m-1-j)*u.ymax/m
                 self.ymin = j*(u.ymax/m)
                 print(self.xmaxx,self.ymaxx,self.xmin,self.ymin)
-                #pygame.draw.rect(u.windowSurface, u.BLACK, (self.z, self.w, self.x-self.z, self.y-self.w),0)
-            self.people()
-            
+                #self.lina1 = pygame.draw.line(u.windowSurface, u.BLACK, (self.xmin, self.ymin), (self.xmaxx, self.ymin), 50)
+                #self.lina2 = pygame.draw.line(u.windowSurface, u.BLACK, (self.xmin, self.ymin), (self.xmin, self.ymaxx), 50)
+                self.people()
+
     def svaedaskopp(self,e):
         if e.x < self.xmin+u.radius or e.x > self.xmaxx-u.radius:
             e.vx = -1 * e.vx
