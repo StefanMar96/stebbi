@@ -27,6 +27,9 @@ class Keyrsla:
 
         #clear screen
         u.windowSurface.fill(u.WHITE)
+        pygame.draw.line(u.windowSurface, u.BLACK, (400, 0), (400, 400), 5)
+        pygame.draw.line(u.windowSurface, u.BLACK, (0, 200), (800, 200), 5)
+        print(h.xmaxx)
 
         #Keyrum smit á opnu svæði
         for e in h.einstaklingur:
