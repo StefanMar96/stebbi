@@ -39,24 +39,37 @@ class Hopur():
         k = 4
 
         #Fjöldi fólks í hóp
-        self.n = 25
+        #self.n = 25
 
         #Búum til svæði
         for i in range(l):
             self.xmaxx = u.xmax - (l-1-i)*u.xmax/l
             self.xmin = i*(u.xmax/l)
+            if i == 0:
+                self.xmin1 = self.xmin
+                self.xmaxx1 = self.xmaxx
+            else:
+                self.xmin2 = self.xmin
+                self.xmaxx2 = self.xmaxx
             for j in range(m):
                 self.ymaxx = u.ymax - (m-1-j)*u.ymax/m
                 self.ymin = j*(u.ymax/m)
-                print(self.xmaxx,self.ymaxx,self.xmin,self.ymin)
+                if j == 0:
+                    self.ymin1 = self.ymin
+                    self.ymaxx1 = self.ymaxx
+                else:
+                    self.ymin2 = self.ymin
+                    self.ymaxx2 = self.ymaxx
+
+                #print(self.xmin,self.xmaxx,self.ymin,self.ymaxx)
                 #self.lina1 = pygame.draw.line(u.windowSurface, u.BLACK, (self.xmin, self.ymin), (self.xmaxx, self.ymin), 50)
                 #self.lina2 = pygame.draw.line(u.windowSurface, u.BLACK, (self.xmin, self.ymin), (self.xmin, self.ymaxx), 50)
-                self.people()
+                #self.people()
 
     def svaedaskopp(self,e):
-        if e.x < self.xmin+u.radius or e.x > self.xmaxx-u.radius:
+        if (e.x < self.xmin1+u.radius or e.x > self.xmaxx1-u.radius) and (e.x < self.xmin2+u.radius or e.x > self.xmaxx2-u.radius):
             e.vx = -1 * e.vx
-        if e.y < self.ymin+u.radius or e.y > self.ymaxx-u.radius:
+        if (e.y < self.ymin1+u.radius or e.y > self.ymaxx1-u.radius) and (e.y < self.ymin2+u.radius or e.y > self.ymaxx2-u.radius):
             e.vy = -1 * e.vy
 
     #Búum til n marga einstaklinga á opnu svæði
@@ -78,9 +91,11 @@ class Hopur():
             for j in range(i+1,self.n):
                 distance = math.hypot(einstaklingur[i].x - einstaklingur[j].x, einstaklingur[i].y - einstaklingur[j].y)
                 if distance <= 2*u.radius:
-                    einstaklingur[j].vx = -1 * einstaklingur[j].vx        
+                    einstaklingur[j].vx = -1 * einstaklingur[j].vx
                     einstaklingur[j].vy = -1 * einstaklingur[j].vy
                     einstaklingur[i].vx = -1 * einstaklingur[i].vx
                     einstaklingur[i].vy = -1 * einstaklingur[i].vy
                     if(einstaklingur[j].litur==u.ORANGE):
                         einstaklingur[i].sykist()
+                    if(einstaklingur[i].litur==u.ORANGE):
+                        einstaklingur[j].sykist()
