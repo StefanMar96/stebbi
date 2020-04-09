@@ -44,6 +44,9 @@ class Keyrsla:
             #Teikna einstaklinga
             e.teikna(e.x,e.y,u.radius)
 
+            #breyting
+            e.breyting(e)
+
         #Látum bolta skoppa af hvor öðrum
         h.arekstur(h.einstaklingur)
            
