@@ -29,9 +29,11 @@ class Hopur():
         self.xmin = 0
         #Lægsta y gildi svæðis
         self.ymin = 0
+        #x=250
+        self.x250 = 0
 
     #Búum til svæði og teiknum hópa
-    def svaedi_hopar(self):
+    def fjogur_svaedi_hopar(self):
         #Fjöldi reita x
         l = 2
         #Fjöldi svæða y
@@ -62,12 +64,17 @@ class Hopur():
                     self.ymin2 = self.ymin
                     self.ymaxx2 = self.ymaxx
 
-
-    def svaedaskopp(self,e):
+    def svaedaskopp_fjogur_svaedi(self,e):
         if (e.x < self.xmin1+u.radius or e.x > self.xmaxx1-u.radius) and (e.x < self.xmin2+u.radius or e.x > self.xmaxx2-u.radius):
             e.vx = -1 * e.vx
         if (e.y < self.ymin1+u.radius or e.y > self.ymaxx1-u.radius) and (e.y < self.ymin2+u.radius or e.y > self.ymaxx2-u.radius):
             e.vy = -1 * e.vy
+
+    def svaedaskopp_eitt_svaedi(self, e):
+        number = random.randint(1, 100)
+        if number <= 95:  #Líkur að komast ekki í gegn
+            if (e.x > self.x250-u.radius) and (e.x < self.x250+u.radius):
+                e.vx = -1 * e.vx
 
     #Búum til n marga einstaklinga á opnu svæði
     def people(self):
@@ -98,5 +105,13 @@ class Hopur():
                                 einstaklingur[i].sykist()
                             if(einstaklingur[i].litur==u.ORANGE and einstaklingur[j].litur==u.BLUE):
                                 einstaklingur[j].sykist()
+
+    def syktir_location(self,e):
+        self.x250 = self.xmin + 250
+        if (e.litur==u.ORANGE):
+            e.x = random.randrange(0+u.radius, self.x250-u.radius)
+
+
+
 
 
