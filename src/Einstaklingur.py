@@ -23,7 +23,7 @@ class Einstaklingur():
     #Þetta fall ákvarðar hve margir byrja sýktir, breyta?
     def byrjar_syktur(self):
         number = random.randint(1, 100)
-        if number >= 90:
+        if number >= 95:
             self.litur = u.ORANGE
             self.timi=pygame.time.get_ticks()
 
@@ -55,3 +55,7 @@ class Einstaklingur():
         if(self.litur!=u.BLACK):
             e.x += e.vx
             e.y += e.vy
+
+
+
+
