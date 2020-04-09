@@ -20,7 +20,7 @@ class Keyrsla:
     h = H.Hopur()
     u = U.Uppsetning()
 
-    h.svaedi_hopar()
+    h.fjogur_svaedi_hopar()
     h.people()
 
     #Aðal loopan
@@ -36,7 +36,7 @@ class Keyrsla:
         for e in h.einstaklingur:
 
             #SKOPPA AF VEGG
-            h.svaedaskopp(e)
+            h.svaedaskopp_fjogur_svaedi(e)
 
             #Færa leikmenn á borði
             e.move(e)
