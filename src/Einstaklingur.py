@@ -18,18 +18,33 @@ class Einstaklingur():
         self.vy = random.randrange(-3, 3)
         self.litur = u.BLUE
         self.byrjar_syktur()
+        self.timi = 0
 
     #Þetta fall ákvarðar hve margir byrja sýktir, breyta?
     def byrjar_syktur(self):
         number = random.randint(1, 100)
-        if number >= 60:
+        if number >= 90:
             self.litur = u.ORANGE
+            self.timi=pygame.time.get_ticks()
+
 
     #Fall sem ákvarðar hvort einstaklingur smitast við árekstur
     def sykist(self):
         number = random.randint(1, 100)
         if number >= 50:
             self.litur = u.ORANGE
+            self.timi=pygame.time.get_ticks()
+#            self.breyting()
+
+    def breyting(self, e):
+        seconds=(pygame.time.get_ticks()-self.timi)/1000
+        if(self.litur == u.ORANGE):
+            if seconds>20:
+                number = random.randint(1, 100)
+                if number > 5:
+                    self.litur = u.PINK
+                else:
+                    self.litur = u.BLACK
 
     #Þetta fall teiknar kúlurnar
     def teikna(self,x,y,radius):
@@ -37,8 +52,6 @@ class Einstaklingur():
 
     #Færa kúlur á borði
     def move(self, e):
-        e.x += e.vx
-        e.y += e.vy
-
-
-
+        if(self.litur!=u.BLACK):
+            e.x += e.vx
+            e.y += e.vy
