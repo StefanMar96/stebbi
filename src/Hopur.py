@@ -5,6 +5,7 @@ from pygame.locals import *
 import math
 import Einstaklingur as E
 import Uppsetning as U
+import time
 
 u = U.Uppsetning()
 
@@ -61,10 +62,6 @@ class Hopur():
                     self.ymin2 = self.ymin
                     self.ymaxx2 = self.ymaxx
 
-                #print(self.xmin,self.xmaxx,self.ymin,self.ymaxx)
-                #self.lina1 = pygame.draw.line(u.windowSurface, u.BLACK, (self.xmin, self.ymin), (self.xmaxx, self.ymin), 50)
-                #self.lina2 = pygame.draw.line(u.windowSurface, u.BLACK, (self.xmin, self.ymin), (self.xmin, self.ymaxx), 50)
-                #self.people()
 
     def svaedaskopp(self,e):
         if (e.x < self.xmin1+u.radius or e.x > self.xmaxx1-u.radius) and (e.x < self.xmin2+u.radius or e.x > self.xmaxx2-u.radius):
@@ -88,14 +85,18 @@ class Hopur():
     def arekstur(self,einstaklingur):
         #UPDATE POSITIONS
         for i in range(self.n):
-            for j in range(i+1,self.n):
-                distance = math.hypot(einstaklingur[i].x - einstaklingur[j].x, einstaklingur[i].y - einstaklingur[j].y)
-                if distance <= 2*u.radius:
-                    einstaklingur[j].vx = -1 * einstaklingur[j].vx
-                    einstaklingur[j].vy = -1 * einstaklingur[j].vy
-                    einstaklingur[i].vx = -1 * einstaklingur[i].vx
-                    einstaklingur[i].vy = -1 * einstaklingur[i].vy
-                    if(einstaklingur[j].litur==u.ORANGE):
-                        einstaklingur[i].sykist()
-                    if(einstaklingur[i].litur==u.ORANGE):
-                        einstaklingur[j].sykist()
+            if(einstaklingur[i].litur!=u.BLACK):
+                for j in range(i+1,self.n):
+                    if(einstaklingur[j].litur!=u.BLACK):
+                        distance = math.hypot(einstaklingur[i].x - einstaklingur[j].x, einstaklingur[i].y - einstaklingur[j].y)
+                        if distance <= 2*u.radius:
+                            einstaklingur[j].vx = -1 * einstaklingur[j].vx
+                            einstaklingur[j].vy = -1 * einstaklingur[j].vy
+                            einstaklingur[i].vx = -1 * einstaklingur[i].vx
+                            einstaklingur[i].vy = -1 * einstaklingur[i].vy
+                            if(einstaklingur[j].litur==u.ORANGE and einstaklingur[i].litur==u.BLUE):
+                                einstaklingur[i].sykist()
+                            if(einstaklingur[i].litur==u.ORANGE and einstaklingur[j].litur==u.BLUE):
+                                einstaklingur[j].sykist()
+
+
