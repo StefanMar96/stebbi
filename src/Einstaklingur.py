@@ -1,5 +1,4 @@
 import sys
-#import numpy as np
 import random
 import pygame
 from pygame.locals import *
@@ -16,45 +15,45 @@ class Einstaklingur():
         self.y = random.randrange(radius, y-radius)
         self.vx = random.randrange(-3, 3)
         self.vy = random.randrange(-3, 3)
-        self.litur = u.BLUE
+        self.litur = u.HEILBRIGDUR
         self.byrjar_syktur()
         self.timi = 0
 
     #Þetta fall ákvarðar hve margir byrja sýktir, breyta?
     def byrjar_syktur(self):
-        number = random.randint(1, 100)
+        number = u.random_tala()
         if number >= 95:
-            self.litur = u.ORANGE
+            self.litur = u.SYKTUR
             self.timi=pygame.time.get_ticks()
 
 
     #Fall sem ákvarðar hvort einstaklingur smitast við árekstur
     def sykist(self):
-        number = random.randint(1, 100)
+        number = u.random_tala()
         if number >= 50:
-            self.litur = u.ORANGE
+            self.litur = u.SYKTUR
             self.timi=pygame.time.get_ticks()
 #            self.breyting()
 
-    def breyting(self, e):
+    def breyting_timi(self):
         seconds=(pygame.time.get_ticks()-self.timi)/1000
-        if(self.litur == u.ORANGE):
+        if(self.litur == u.SYKTUR):
             if seconds>20:
-                number = random.randint(1, 100)
+                number = u.random_tala()
                 if number > 5:
-                    self.litur = u.PINK
+                    self.litur = u.BATNAD
                 else:
-                    self.litur = u.BLACK
+                    self.litur = u.LATNIR
 
     #Þetta fall teiknar kúlurnar
-    def teikna(self,x,y,radius):
-        pygame.draw.circle(u.windowSurface, self.litur, (x,y), u.radius, 0)
+    def teikna(self):
+        pygame.draw.circle(u.windowSurface, self.litur, (self.x,self.y), u.radius, 0)
 
     #Færa kúlur á borði
-    def move(self, e):
-        if(self.litur!=u.BLACK):
-            e.x += e.vx
-            e.y += e.vy
+    def faera(self):
+        if(self.litur!=u.LATNIR):
+            self.x += self.vx
+            self.y += self.vy
 
 
 
