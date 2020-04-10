@@ -1,56 +1,48 @@
 import sys
-import random
 import pygame
 from pygame.locals import *
-import math
-import Einstaklingur as E
 import Uppsetning as U
 import Hopur as H
 
-class Keyrsla:
+h = H.Hopur()
+u = U.Uppsetning()
 
-    #SET UP PYGAME
-    pygame.init()
+FRAMES_PER_SECOND = 30
+fpsClock = pygame.time.Clock()
 
-    #SET UP WINDOW
-    pygame.display.set_caption('Covid-19 hermir')
-    FRAMES_PER_SECOND = 30
-    fpsClock = pygame.time.Clock()
+#SET UP PYGAME
+pygame.init()
 
-    h = H.Hopur()
-    u = U.Uppsetning()
+#SET UP WINDOW
+pygame.display.set_caption('Covid-19 hermir')
 
-    h.people()
+h.einstaklingar()
 
-    #Aðal loopan
-    while True:
+#Aðal loopan
+while True:
+    #clear screen
+    u.windowSurface.fill(u.HVITUR)
 
-        #clear screen
-        u.windowSurface.fill(u.WHITE)
+    #Færa leikmenn á borði
+    h.faera()
 
-        #Keyrum smit á opnu svæði
-        for e in h.einstaklingur:
+    #Teikna einstaklinga
+    h.teikna()
 
-            #SKOPPA AF VEGG
-            h.veggskopp(e)
+    #SKOPPA AF VEGG
+    h.veggskopp()
 
-            #Færa leikmenn á borði
-            e.move(e)
+    #Látum bolta skoppa af hvor öðrum
+    h.arekstur()
 
-            #Teikna einstaklinga
-            e.teikna(e.x,e.y,u.radius)
-
-            #breyting
-            e.breyting(e)
-            
-        #Látum bolta skoppa af hvor öðrum
-        h.arekstur(h.einstaklingur)
+    #Skoðum breytingu á tíma frá smiti
+    h.breyting_timi()
         
-        #event handling
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                pygame.quit()
-                sys.exit()
+    #event handling
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
 
-        pygame.display.update()
-        fpsClock.tick(FRAMES_PER_SECOND)
+    pygame.display.update()
+    fpsClock.tick(FRAMES_PER_SECOND)
