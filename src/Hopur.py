@@ -22,9 +22,9 @@ class Hopur():
         self.svaedi = []
 
         #Hæsta x gildi svæðis
-        self.xmaxx = 0 #u.xmax
+        self.xmax = 0 #u.xmax
         #Hæsta y gildi svæðis
-        self.ymaxx = 0 #u.ymax
+        self.ymax = 0 #u.ymax
         #Lægsta x gildi svæðis
         self.xmin = 0
         #Lægsta y gildi svæðis
@@ -46,71 +46,86 @@ class Hopur():
 
         #Búum til svæði
         for i in range(l):
-            self.xmaxx = u.xmax - (l-1-i)*u.xmax/l
-            self.xmin = i*(u.xmax/l)
+            self.xmax = u.xBORD - (l-1-i)*u.xBORD/l
+            self.xmin = i*(u.xBORD/l)
             if i == 0:
                 self.xmin1 = self.xmin
-                self.xmaxx1 = self.xmaxx
+                self.xmax1 = self.xmax
             else:
                 self.xmin2 = self.xmin
-                self.xmaxx2 = self.xmaxx
+                self.xmax2 = self.xmax
             for j in range(m):
-                self.ymaxx = u.ymax - (m-1-j)*u.ymax/m
-                self.ymin = j*(u.ymax/m)
+                self.ymax = u.yBORD - (m-1-j)*u.yBORD/m
+                self.ymin = j*(u.yBORD/m)
                 if j == 0:
                     self.ymin1 = self.ymin
-                    self.ymaxx1 = self.ymaxx
+                    self.ymax1 = self.ymax
                 else:
                     self.ymin2 = self.ymin
-                    self.ymaxx2 = self.ymaxx
+                    self.ymax2 = self.ymax
 
-    def svaedaskopp_fjogur_svaedi(self,e):
-        if (e.x < self.xmin1+u.radius or e.x > self.xmaxx1-u.radius) and (e.x < self.xmin2+u.radius or e.x > self.xmaxx2-u.radius):
-            e.vx = -1 * e.vx
-        if (e.y < self.ymin1+u.radius or e.y > self.ymaxx1-u.radius) and (e.y < self.ymin2+u.radius or e.y > self.ymaxx2-u.radius):
-            e.vy = -1 * e.vy
-
-    def svaedaskopp_eitt_svaedi(self, e):
-        number = random.randint(1, 100)
-        if number <= 95:  #Líkur að komast ekki í gegn
-            if (e.x > self.x250-u.radius) and (e.x < self.x250+u.radius):
+    def svaedaskopp_fjogur_svaedi(self):
+        for e in self.einstaklingur:
+            if (e.x < self.xmin1+u.radius or e.x > self.xmax1-u.radius) and (e.x < self.xmin2+u.radius or e.x > self.xmax2-u.radius):
                 e.vx = -1 * e.vx
+            if (e.y < self.ymin1+u.radius or e.y > self.ymax1-u.radius) and (e.y < self.ymin2+u.radius or e.y > self.ymax2-u.radius):
+                e.vy = -1 * e.vy
+
+    def svaedaskopp_eitt_svaedi(self):
+        for e in self.einstaklingur:
+            number = u.random_tala()
+            if number <= 95:  #Líkur að komast ekki í gegn
+                if (e.x > self.x250-u.radius) and (e.x < self.x250+u.radius):
+                    e.vx = -1 * e.vx
 
     #Búum til n marga einstaklinga á opnu svæði
-    def people(self):
+    def einstaklingar(self):
         for i in range(self.n):
-            e = E.Einstaklingur(u.xmax, u.ymax, u.radius)
+            e = E.Einstaklingur(u.xBORD, u.yBORD, u.radius)
             self.einstaklingur.append(e)
 
     #Boltar skoppa af veggjum
-    def veggskopp(self, e):
-        if e.x < u.radius or e.x > u.xmax-u.radius:
-            e.vx = -1 * e.vx
-        if e.y < u.radius or e.y > u.ymax-u.radius:
-            e.vy = -1 * e.vy
+    def veggskopp(self):
+        for e in self.einstaklingur:
+            if e.x < u.radius or e.x > u.xBORD-u.radius:
+                e.vx = -1 * e.vx
+            if e.y < u.radius or e.y > u.yBORD-u.radius:
+                e.vy = -1 * e.vy
 
-    def arekstur(self,einstaklingur):
+    def arekstur(self):
         #UPDATE POSITIONS
         for i in range(self.n):
-            if(einstaklingur[i].litur!=u.BLACK):
+            if(self.einstaklingur[i].litur!=u.LATNIR):
                 for j in range(i+1,self.n):
-                    if(einstaklingur[j].litur!=u.BLACK):
-                        distance = math.hypot(einstaklingur[i].x - einstaklingur[j].x, einstaklingur[i].y - einstaklingur[j].y)
+                    if(self.einstaklingur[j].litur!=u.LATNIR):
+                        distance = math.hypot(self.einstaklingur[i].x - self.einstaklingur[j].x, self.einstaklingur[i].y - self.einstaklingur[j].y)
                         if distance <= 2*u.radius:
-                            einstaklingur[j].vx = -1 * einstaklingur[j].vx
-                            einstaklingur[j].vy = -1 * einstaklingur[j].vy
-                            einstaklingur[i].vx = -1 * einstaklingur[i].vx
-                            einstaklingur[i].vy = -1 * einstaklingur[i].vy
-                            if(einstaklingur[j].litur==u.ORANGE and einstaklingur[i].litur==u.BLUE):
-                                einstaklingur[i].sykist()
-                            if(einstaklingur[i].litur==u.ORANGE and einstaklingur[j].litur==u.BLUE):
-                                einstaklingur[j].sykist()
+                            self.einstaklingur[j].vx = -1 * self.einstaklingur[j].vx
+                            self.einstaklingur[j].vy = -1 * self.einstaklingur[j].vy
+                            self.einstaklingur[i].vx = -1 * self.einstaklingur[i].vx
+                            self.einstaklingur[i].vy = -1 * self.einstaklingur[i].vy
+                            if(self.einstaklingur[j].litur==u.SYKTUR and self.einstaklingur[i].litur==u.HEILBRIGDUR):
+                                self.einstaklingur[i].sykist()
+                            if(self.einstaklingur[i].litur==u.SYKTUR and self.einstaklingur[j].litur==u.HEILBRIGDUR):
+                                self.einstaklingur[j].sykist()
 
-    def syktir_location(self,e):
-        self.x250 = self.xmin + 250
-        if (e.litur==u.ORANGE):
-            e.x = random.randrange(0+u.radius, self.x250-u.radius)
+    def syktir_location(self):
+        for e in self.einstaklingur:
+            self.x250 = self.xmin + 250
+            if (e.litur==u.SYKTUR):
+                e.x = random.randrange(0+u.radius, self.x250-u.radius)
 
+    def faera(self):
+        for e in self.einstaklingur:
+            e.faera()
+
+    def teikna(self):
+        for e in self.einstaklingur:
+            e.teikna()
+
+    def breyting_timi(self):
+        for e in self.einstaklingur:
+            e.breyting_timi()
 
 
 
