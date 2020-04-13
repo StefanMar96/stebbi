@@ -21,22 +21,73 @@ Titill: Skipta borði í svæði og láta þau virka
 Forgangsröð: 20
 Tími: 10 klst
 
-Titill: Smit þar sem smitaðir fara í einangrun(litlar líkur á smiti og punktar hreyfast ekki)
+Titill: Smit þar sem ákveðið svæði er lokað með litlum líkum á að komast í gegn
 Forgangsröð: 20
 Tími: 5 klst
 
 Titill: Smit þar sem er möguleiki á algjöri einangrun
-Forgangsröð: 20
+Forgangsröð: 40
 Tími: 5 klst
-
-Titill: Bæði þar sem smitaðir eru settir í sóttkví eða algjöra einangrun
-Forgangsröð: 30
-Tími: 2 klst
-
-Titill: Skipta borði í bæjarfélög og hafa takmarkaðan umgang á milli þeirra, væri áhugavert að hafa bæina misstóra, sbr, Ak-Rvk, o.s.frv.
-Forgangsröð: 30
-Tími:  6 klst
 
 Titill: Talningar á ástandi fólks
 Forgangsröðun: 40
 Tími: 8 klst
+
+Titill: Framsetning 
+Forgangsröðun: 50
+Tími: 15 klst
+
+
+Verkáætlun:
+
+Smit á opnu svæði 10 klst
+1. Fá bolta til að skoppa af vegg 2 klst
+2. Boltar skoppa af hvoru öðrum 4 klst
+3. Boltar lita aðra bolta 4 klst
+
+Laga kóða 11 klst
+1. Setja kóða í klasa og föll 11 klst
+
+...
+
+
+
+Verkáætlun:
+
+Smit á opnu svæði 10 klst
+1. Fá bolta til að skoppa af vegg 2 klst
+2. Boltar skoppa af hvoru öðrum 4 klst
+3. Boltar lita aðra bolta 4 klst
+
+Laga kóða 11 klst
+1. Setja kóða í klasa og föll 11 klst
+
+
+Spurningar i tima:
+
+Fá ráðleggingar fyrir klasa
+Eigum við að skipta verkefnum niður eftir lotum?
+Boltar festast saman og við finnum ekki afhverju
+
+6.4.2020:
+Fá kúlur til að skoppa af hvor annarri.
+Ef tími: Hvernig væri sniðugt að skipta borðinu niður í skilgreind svæði?
+
+8.4.2020:
+Fá hugmyndir að hermunum
+Fá hugmyndir að framsetningu
+Einhverjir punktar byrja inní rammanum?
+Hvernig virkar tími? Væri málið að stoppa hermunina eftir x margar sek? 
+Talningar- birting
+Hvernig má einfalda tíma sem fólk læknast
+Hvernig er hægt að telja tíma frá smiti fyrir alla bolta?
+
+
+Tiltekt í kóða 10.4.2020:
+Breyta öllum nöfnum í íslensk nöfn
+Breyta nöfnum á litum í ástand sjúklings
+Færa köll í keyrsluskrám
+Laga breytuheiti t.d. Xmaxx og xmax
+Eyða klasa í keyrsluskrám
+Eyða óþörfum importum
+
