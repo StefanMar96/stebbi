@@ -16,16 +16,17 @@ class Einstaklingur():
         self.vx = random.randrange(-3, 3)
         self.vy = random.randrange(-3, 3)
         self.litur = u.HEILBRIGDUR
-        self.byrjar_syktur()
         self.timi = 0
+        self.talning = 0
+        self.byrjar_syktur()
 
-    #Þetta fall ákvarðar hve margir byrja sýktir, breyta?
+    #Þetta fall ákvarðar hve margir byrja sýktir
     def byrjar_syktur(self):
         number = u.random_tala()
         if number >= 95:
             self.litur = u.SYKTUR
             self.timi=pygame.time.get_ticks()
-
+            self.talning = 1
 
     #Fall sem ákvarðar hvort einstaklingur smitast við árekstur
     def sykist(self):
@@ -33,7 +34,7 @@ class Einstaklingur():
         if number >= 50:
             self.litur = u.SYKTUR
             self.timi=pygame.time.get_ticks()
-#            self.breyting()
+            self.talning = 1
 
     def breyting_timi(self):
         seconds=(pygame.time.get_ticks()-self.timi)/1000
@@ -42,8 +43,10 @@ class Einstaklingur():
                 number = u.random_tala()
                 if number > 5:
                     self.litur = u.BATNAD
+                    self.talning = 2
                 else:
                     self.litur = u.LATNIR
+                    self.talning = 3
 
     #Þetta fall teiknar kúlurnar
     def teikna(self):
@@ -54,7 +57,6 @@ class Einstaklingur():
         if(self.litur!=u.LATNIR):
             self.x += self.vx
             self.y += self.vy
-
 
 
 

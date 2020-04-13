@@ -32,6 +32,12 @@ class Hopur():
         #x=250
         self.x250 = 0
 
+        #Breyta sem telur fjölda sýktra 
+        self.teljasykta = 0
+        self.teljabatnad = 0
+        self.teljalatna = 0
+        self.teljaheilbrigda = 0
+
     #Búum til svæði og teiknum hópa
     def fjogur_svaedi_hopar(self):
         #Fjöldi reita x
@@ -108,6 +114,26 @@ class Hopur():
                                 self.einstaklingur[i].sykist()
                             if(self.einstaklingur[i].litur==u.SYKTUR and self.einstaklingur[j].litur==u.HEILBRIGDUR):
                                 self.einstaklingur[j].sykist()
+
+    def talningar(self):
+        self.teljasykta = 0
+        self.teljabatnad = 0
+        self.teljalatna = 0
+        self.teljaheilbrigda = 0
+        for e in self.einstaklingur:
+            if(e.talning == 0):
+                self.teljaheilbrigda += 1
+            if (e.talning == 1):
+                self.teljasykta += 1
+            if(e.talning == 2):
+                self.teljabatnad += 1
+            if(e.talning == 3):
+                self.teljalatna += 1
+        print("H", self.teljaheilbrigda)      
+        print("S", self.teljasykta)
+        print("B", self.teljabatnad)
+        print("L", self.teljalatna)
+
 
     def syktir_location(self):
         for e in self.einstaklingur:
