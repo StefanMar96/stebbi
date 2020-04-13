@@ -91,3 +91,21 @@ Laga breytuheiti t.d. Xmaxx og xmax
 Eyða klasa í keyrsluskrám
 Eyða óþörfum importum
 
+
+Markmið: skila 19.4.2020
+To Do fyrir skil (13.4.2020):
+Bæta hermun á fjórum svæðum (HVERNIG?)
+Hafa einhverjar líkur á að smitaður sé greindur og settur í einangrun
+Stækka hermunargluggann og útfæra framsetningu með flottu notendaviðmóti
+  Talningar á ástandi einstaklinga, bæði tölur og graf
+  Slide takkar svo notandi geti valið ákveðnar breytur
+  Takkar sem skipta á milli hermana
+  Eitt main fall (skrá) sem stjórnar öllum hermunum (ekki 3 eins og núna)
+  Start takki
+Hugmyndir að breytum sem notandi getur stjórnað:
+  Fjöldi einstaklinga á leikborði (1-100)
+  Upphafsfjöldi smitaðra (1-10?)
+  Líkur á smiti?
+  Líkur á að komast í gegnum vegg (smitLokadSvaedi)
+
+
