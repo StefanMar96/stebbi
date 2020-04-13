@@ -37,6 +37,9 @@ while True:
 
     #Skoðum breytingu á tíma frá smiti
     h.breyting_timi()
+
+    #Talningar á ástandi einstaklinga
+    h.talningar()
         
     #event handling
     for event in pygame.event.get():
