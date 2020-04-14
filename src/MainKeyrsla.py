@@ -13,6 +13,11 @@ fpsClock = pygame.time.Clock()
 h = H.Hopur()
 u = U.Uppsetning()
 
+#Upphafsstilling valkvæðra breyta
+value=0
+value1=0
+value2=0
+
 background = pygame.Surface((u.xSkjar, u.ySkjar))
 
 #SET UP PYGAME
@@ -43,6 +48,17 @@ fjogur_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((900, 120
 
 byrja_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((750, 520), (100, 50)),
                                             text='BYRJA',
+                                            manager=manager)
+
+#SLIDERS
+horiz_slider = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((700, 225), (200, 50)),
+                                                    start_value = 10, value_range=(0,100),
+                                            manager=manager)
+horiz_slider1 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((700, 325), (200, 50)),
+                                                    start_value = 10, value_range=(0,100),
+                                            manager=manager)
+horiz_slider2 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((700, 425), (200, 50)),
+                                                    start_value = 10, value_range=(0,100),
                                             manager=manager)
 
 #Svartur rammi með texta
@@ -90,6 +106,7 @@ fjoldiS = fontTeljarar.render('Fjöldi sýktra:', True, u.SYKTUR, u.HVITUR)
 fjoldiB = fontTeljarar.render('Fjöldi óvirkra smita:', True, u.BATNAD, u.HVITUR)
 fjoldiL = fontTeljarar.render('Fjöldi látinna:', True, u.LATNIR, u.HVITUR)
 fjoldiL1 = fontTeljarar.render('0', True, u.LATNIR, u.HVITUR)
+#gildi1 = fontTeljarar.render(gildi, True, u.SYKTUR, u.HVITUR)
   
 # create a rectangular object for the 
 # text surface object 
@@ -123,6 +140,19 @@ textRect9.center = (700,735)
 textRect10 = fjoldiL1.get_rect() 
 textRect10.center = (900,735)
 
+#textRect11 = gildi1.get_rect() 
+#textRect11.center = (950,250)
+
+clock = pygame.time.Clock()
+
+def score(gildi1,gildi2,gildi3):
+    s1 = fontTeljarar.render(str(gildi1), True, u.SYKTUR)
+    #s2 = fontTeljarar.render(str(gildi2), True, u.SYKTUR)
+    #s3 = fontTeljarar.render(str(gildi3), True, u.SYKTUR)
+    u.windowSurface.blit(s1,[900,240])
+    #u.windowSurface.blit(s2,[0,300])
+    #u.windowSurface.blit(s3,[0,400])
+
 #Aðal loopan
 while True:
 
@@ -147,6 +177,8 @@ while True:
     u.windowSurface.blit(fjoldiL, textRect9)
     u.windowSurface.blit(fjoldiL1, textRect10)
 
+    time_delta = clock.tick(60)/1000.0
+
     #event handling
     for event in pygame.event.get():
         hermun_nr = 0
@@ -162,8 +194,22 @@ while True:
                     hermun_nr=2
                 if event.ui_element == fjogur_button:
                     hermun_nr=3
+            if event.user_type == pygame_gui.UI_HORIZONTAL_SLIDER_MOVED:
+                if event.ui_element == horiz_slider:
+                    value = round(horiz_slider.get_current_value())
+                    print(value)
+                    #u.windowSurface.blit(gildi1, textRect11)
+                if event.ui_element == horiz_slider1:
+                    value1 = round(horiz_slider.get_current_value())
+                    print(value1)
+                if event.ui_element == horiz_slider2:
+                    value2 = round(horiz_slider.get_current_value())
+                    print(value2)
+        
+            score(value,value1,value2)
 
         manager.process_events(event)
+    manager.update(time_delta)
 
     u.windowSurface.blit(background, (0, 0))
     manager.draw_ui(u.windowSurface)
