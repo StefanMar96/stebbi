@@ -36,6 +36,16 @@ class Einstaklingur():
             self.timi=pygame.time.get_ticks()
             self.talning = 1
 
+    def einangrun(self):
+        seconds=(pygame.time.get_ticks()-self.timi)/1000
+        if(self.litur == u.SYKTUR):
+            if seconds > 10:
+                number = u.random_tala()
+                if (number > 95):
+                    self.litur = u.EINANGRUN
+                if seconds > 20:
+                    self.litur = u.SYKTUR
+
     def breyting_timi(self):
         seconds=(pygame.time.get_ticks()-self.timi)/1000
         if(self.litur == u.SYKTUR):
@@ -54,9 +64,12 @@ class Einstaklingur():
 
     #Færa kúlur á borði
     def faera(self):
-        if(self.litur!=u.LATNIR):
+        if(self.litur!=u.LATNIR and self.litur!=u.EINANGRUN):
             self.x += self.vx
             self.y += self.vy
+
+
+
 
 
 
