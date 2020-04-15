@@ -96,9 +96,9 @@ class Hopur():
     def arekstur(self):
         #UPDATE POSITIONS
         for i in range(self.n):
-            if(self.einstaklingur[i].litur!=u.LATNIR):
+            if(self.einstaklingur[i].litur!=u.LATNIR and self.einstaklingur[i].litur!=u.EINANGRUN):
                 for j in range(i+1,self.n):
-                    if(self.einstaklingur[j].litur!=u.LATNIR):
+                    if(self.einstaklingur[j].litur!=u.LATNIR and self.einstaklingur[j].litur!=u.EINANGRUN):
                         distance = math.hypot(self.einstaklingur[i].x - self.einstaklingur[j].x, self.einstaklingur[i].y - self.einstaklingur[j].y)
                         if distance <= 2*u.radius:
                             self.einstaklingur[j].vx = -1 * self.einstaklingur[j].vx
@@ -139,6 +139,18 @@ class Hopur():
     def faera(self):
         for e in self.einstaklingur:
             e.faera()
+
+    def teikna(self):
+        for e in self.einstaklingur:
+            e.teikna()
+
+    def breyting_timi(self):
+        for e in self.einstaklingur:
+            e.breyting_timi()
+
+    def greina_smit(self):
+        for e in self.einstaklingur:
+            e.einangrun()
 
     def teikna(self):
         for e in self.einstaklingur:
