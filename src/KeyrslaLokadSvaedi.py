@@ -25,7 +25,7 @@ while True:
 
     #clear screen
     u.windowSurface.fill(u.HVITUR)
-    pygame.draw.line(u.windowSurface, u.LATNIR, (250, 400), (250, 0), 1)
+    pygame.draw.line(u.windowSurface, u.LATNIR, (200, 600), (200, 0), 1)
         
     #Færa leikmenn á borði
     h.faera()
