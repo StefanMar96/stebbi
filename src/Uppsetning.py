@@ -14,9 +14,11 @@ class Uppsetning():
         self.LATNIR = (0, 0, 0) #látnir 
 
         self.radius = 5
-        self.xBORD = 800 
-        self.yBORD = 400 
-        self.windowSurface = pygame.display.set_mode((self.xBORD, self.yBORD))
+        self.xBORD = 600 
+        self.yBORD = 600 
+        self.xSkjar = 1000
+        self.ySkjar = 750
+        self.windowSurface = pygame.display.set_mode((self.xSkjar, self.ySkjar))
 
     def random_tala(self):
         number = random.randint(1, 100)
