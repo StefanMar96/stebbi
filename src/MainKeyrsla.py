@@ -63,28 +63,6 @@ horiz_slider2 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect
 
 #Svartur rammi með texta
 titilsida = pygame_gui.elements.UITextBox(titill, relative_rect=pygame.Rect((600, 40), (400, 75)), manager=manager)
-#hermunUpplysingar = pygame_gui.elements.UITextBox(upplHermun, relative_rect=pygame.Rect((600, 135), (400, 75)), manager=manager)
-
-#Ekki í notkun. Virkar ekki
-def OpidSvaedi():
-
-    #Teikna einstaklinga
-    h.teikna()
-
-    #Færa einstaklinga á borði
-    h.faera()
-
-    #SKOPPA AF VEGG
-    h.veggskopp()
-
-    #Látum bolta skoppa af hvor öðrum
-    h.arekstur()
-
-    #Skoðum breytingu á tíma frá smiti
-    h.breyting_timi()
-
-    #Talningar á ástandi einstaklinga
-    h.talningar()
 
 # create a font object. 
 # 1st parameter is the font file 
@@ -106,7 +84,6 @@ fjoldiS = fontTeljarar.render('Fjöldi sýktra:', True, u.SYKTUR, u.HVITUR)
 fjoldiB = fontTeljarar.render('Fjöldi óvirkra smita:', True, u.BATNAD, u.HVITUR)
 fjoldiL = fontTeljarar.render('Fjöldi látinna:', True, u.LATNIR, u.HVITUR)
 fjoldiL1 = fontTeljarar.render('0', True, u.LATNIR, u.HVITUR)
-#gildi1 = fontTeljarar.render(gildi, True, u.SYKTUR, u.HVITUR)
   
 # create a rectangular object for the 
 # text surface object 
@@ -140,9 +117,6 @@ textRect9.center = (700,735)
 textRect10 = fjoldiL1.get_rect() 
 textRect10.center = (900,735)
 
-#textRect11 = gildi1.get_rect() 
-#textRect11.center = (950,250)
-
 clock = pygame.time.Clock()
 
 def score(gildi1,gildi2,gildi3):
@@ -152,6 +126,36 @@ def score(gildi1,gildi2,gildi3):
     u.windowSurface.blit(s1,[900,240])
     u.windowSurface.blit(s2,[900,340])
     u.windowSurface.blit(s3,[900,440])
+
+#Virkar ekki
+def keyra_forrit(number, byrja, fjeinst, fjsmit, likur):
+    if (byrja==True):
+        if(number==0):
+            print("JÆJA")
+            OpidSvaedi()
+        if(number==2):
+            print("HÆ")
+
+#Ekki í notkun. Virkar ekki
+def OpidSvaedi():
+
+    #Teikna einstaklinga
+    h.teikna()
+
+    #Færa einstaklinga á borði
+    h.faera()
+
+    #SKOPPA AF VEGG
+    h.veggskopp()
+
+    #Látum bolta skoppa af hvor öðrum
+    h.arekstur()
+
+    #Skoðum breytingu á tíma frá smiti
+    h.breyting_timi()
+
+    #Talningar á ástandi einstaklinga
+    h.talningar()
 
 #Aðal loopan
 while True:
@@ -182,6 +186,7 @@ while True:
     #event handling
     for event in pygame.event.get():
         hermun_nr = 0
+        byrjahermun = False
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
@@ -190,15 +195,18 @@ while True:
                 print("element:", event.ui_element)
                 if event.ui_element == opid_button:
                     hermun_nr=1
+                    print(hermun_nr)
                 if event.ui_element == lokad_button:
                     hermun_nr=2
                 if event.ui_element == fjogur_button:
                     hermun_nr=3
+                if event.ui_element == byrja_button:
+                    print("KEYRA")
+                    byrjahermun=True
             if event.user_type == pygame_gui.UI_HORIZONTAL_SLIDER_MOVED:
                 if event.ui_element == horiz_slider:
                     value = round(horiz_slider.get_current_value())
                     print(value)
-                    #u.windowSurface.blit(gildi1, textRect11)
                 if event.ui_element == horiz_slider1:
                     value1 = round(horiz_slider1.get_current_value())
                     print(value1)
@@ -207,6 +215,7 @@ while True:
                     print(value2)
         
             score(value,value1,value2)
+        keyra_forrit(hermun_nr,byrjahermun,value,value1,value2)
 
         manager.process_events(event)
     manager.update(time_delta)
