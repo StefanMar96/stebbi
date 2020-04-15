@@ -44,6 +44,9 @@ while True:
 
     #Talningar á ástandi einstaklinga
     h.talningar()
+
+    #Sum smit eru greind og þeir einstaklingar eru sendir í einangrun
+    h.greina_smit()
         
     #event handling
     for event in pygame.event.get():
