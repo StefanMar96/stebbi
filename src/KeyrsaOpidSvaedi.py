@@ -20,8 +20,12 @@ h.einstaklingar()
 
 #Aðal loopan
 while True:
+
     #clear screen
     u.windowSurface.fill(u.HVITUR)
+
+    #Lína sem skilur hermun frá tölulegum upplýsingum
+    pygame.draw.line(u.windowSurface, u.LATNIR, (600, 600), (600, 0), 1)
 
     #Færa leikmenn á borði
     h.faera()
