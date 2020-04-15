@@ -31,23 +31,19 @@ pygame.display.set_caption('Covid-19 hermir')
 manager = pygame_gui.UIManager((u.xSkjar, u.ySkjar))
 
 #Texti í svarta rammanum
-titill = "Útfærðar hafa verið þrjár mismunandi hermanir fyrir útbreiðslu COVID-19 veirunnar. Veldu númer þeirrar hermunar sem þú vilt keyra."
+titill = "Útfærðar hafa verið þrjár mismunandi hermanir fyrir útbreiðslu COVID-19 veirunnar."
 
 #TAKKAR
-opid_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((600, 120), (100, 50)),
+opid_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((600, 520), (100, 50)),
                                             text='1',
                                             manager=manager)
 
-lokad_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((750, 120), (100, 50)),
+lokad_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((750, 520), (100, 50)),
                                             text='2',
                                             manager=manager)
 
-fjogur_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((900, 120), (100, 50)),
+fjogur_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((900, 520), (100, 50)),
                                             text='3',
-                                            manager=manager)
-
-byrja_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((750, 520), (100, 50)),
-                                            text='BYRJA',
                                             manager=manager)
 
 #SLIDERS
@@ -62,7 +58,7 @@ horiz_slider2 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect
                                             manager=manager)
 
 #Svartur rammi með texta
-titilsida = pygame_gui.elements.UITextBox(titill, relative_rect=pygame.Rect((600, 40), (400, 75)), manager=manager)
+titilsida = pygame_gui.elements.UITextBox(titill, relative_rect=pygame.Rect((600, 40), (400, 55)), manager=manager)
 
 # create a font object. 
 # 1st parameter is the font file 
@@ -78,12 +74,7 @@ fyrirsogn = fontFyrirsogn.render('Hermun á útbreiðslu COVID-19', True, u.SYKT
 val1 = fontAlmennt.render('Veldu fjölda einstaklinga:', True, u.SYKTUR, u.HVITUR) 
 val2 = fontAlmennt.render('Veldu hve margir eru smitaðir í upphafi:', True, u.SYKTUR, u.HVITUR) 
 val3 = fontAlmennt.render('Veldu smitlíkur veirunnar:', True, u.SYKTUR, u.HVITUR) 
-byrja = fontAlmennt.render('Veldu BYRJA til að hefja hermun:', True, u.SYKTUR, u.HVITUR) 
-fjoldiH = fontTeljarar.render('Fjöldi heilbrigðra:', True, u.HEILBRIGDUR, u.HVITUR)
-fjoldiS = fontTeljarar.render('Fjöldi sýktra:', True, u.SYKTUR, u.HVITUR)
-fjoldiB = fontTeljarar.render('Fjöldi óvirkra smita:', True, u.BATNAD, u.HVITUR)
-fjoldiL = fontTeljarar.render('Fjöldi látinna:', True, u.LATNIR, u.HVITUR)
-fjoldiL1 = fontTeljarar.render('0', True, u.LATNIR, u.HVITUR)
+byrja = fontAlmennt.render('Veldu númer hermunar sem þú vilt keyra:', True, u.SYKTUR, u.HVITUR) 
   
 # create a rectangular object for the 
 # text surface object 
@@ -102,21 +93,6 @@ textRect4.center = (800,400)
 textRect5 = byrja.get_rect() 
 textRect5.center = (800,500)
 
-textRect6 = fjoldiH.get_rect() 
-textRect6.center = (700,615)
-
-textRect7 = fjoldiS.get_rect() 
-textRect7.center = (700,655)
-
-textRect8 = fjoldiB.get_rect() 
-textRect8.center = (700,695)
-
-textRect9 = fjoldiL.get_rect() 
-textRect9.center = (700,735)
-
-textRect10 = fjoldiL1.get_rect() 
-textRect10.center = (900,735)
-
 clock = pygame.time.Clock()
 
 def score(gildi1,gildi2,gildi3):
@@ -126,36 +102,6 @@ def score(gildi1,gildi2,gildi3):
     u.windowSurface.blit(s1,[900,240])
     u.windowSurface.blit(s2,[900,340])
     u.windowSurface.blit(s3,[900,440])
-
-#Virkar ekki
-def keyra_forrit(number, byrja, fjeinst, fjsmit, likur):
-    if (byrja==True):
-        if(number==0):
-            print("JÆJA")
-            OpidSvaedi()
-        if(number==2):
-            print("HÆ")
-
-#Ekki í notkun. Virkar ekki
-def OpidSvaedi():
-
-    #Teikna einstaklinga
-    h.teikna()
-
-    #Færa einstaklinga á borði
-    h.faera()
-
-    #SKOPPA AF VEGG
-    h.veggskopp()
-
-    #Látum bolta skoppa af hvor öðrum
-    h.arekstur()
-
-    #Skoðum breytingu á tíma frá smiti
-    h.breyting_timi()
-
-    #Talningar á ástandi einstaklinga
-    h.talningar()
 
 #Aðal loopan
 while True:
@@ -175,11 +121,6 @@ while True:
     u.windowSurface.blit(val2, textRect3)
     u.windowSurface.blit(val3, textRect4)
     u.windowSurface.blit(byrja, textRect5)
-    u.windowSurface.blit(fjoldiH, textRect6)
-    u.windowSurface.blit(fjoldiS, textRect7)
-    u.windowSurface.blit(fjoldiB, textRect8)
-    u.windowSurface.blit(fjoldiL, textRect9)
-    u.windowSurface.blit(fjoldiL1, textRect10)
 
     time_delta = clock.tick(60)/1000.0
 
@@ -195,14 +136,19 @@ while True:
                 print("element:", event.ui_element)
                 if event.ui_element == opid_button:
                     hermun_nr=1
-                    print(hermun_nr)
+                    import KeyrslaOpidSvaedi
+                    pygame.quit()
+                    sys.exit()
                 if event.ui_element == lokad_button:
                     hermun_nr=2
+                    import KeyrslaLokadSvaedi
+                    pygame.quit()
+                    sys.exit()
                 if event.ui_element == fjogur_button:
                     hermun_nr=3
-                if event.ui_element == byrja_button:
-                    print("KEYRA")
-                    byrjahermun=True
+                    import KeyrslaFjogurSvaedi
+                    pygame.quit()
+                    sys.exit()
             if event.user_type == pygame_gui.UI_HORIZONTAL_SLIDER_MOVED:
                 if event.ui_element == horiz_slider:
                     value = round(horiz_slider.get_current_value())
@@ -215,7 +161,6 @@ while True:
                     print(value2)
         
             score(value,value1,value2)
-        keyra_forrit(hermun_nr,byrjahermun,value,value1,value2)
 
         manager.process_events(event)
     manager.update(time_delta)
