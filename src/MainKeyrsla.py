@@ -147,11 +147,11 @@ clock = pygame.time.Clock()
 
 def score(gildi1,gildi2,gildi3):
     s1 = fontTeljarar.render(str(gildi1), True, u.SYKTUR)
-    #s2 = fontTeljarar.render(str(gildi2), True, u.SYKTUR)
-    #s3 = fontTeljarar.render(str(gildi3), True, u.SYKTUR)
+    s2 = fontTeljarar.render(str(gildi2), True, u.SYKTUR)
+    s3 = fontTeljarar.render(str(gildi3), True, u.SYKTUR)
     u.windowSurface.blit(s1,[900,240])
-    #u.windowSurface.blit(s2,[0,300])
-    #u.windowSurface.blit(s3,[0,400])
+    u.windowSurface.blit(s2,[900,340])
+    u.windowSurface.blit(s3,[900,440])
 
 #Aðal loopan
 while True:
@@ -200,10 +200,10 @@ while True:
                     print(value)
                     #u.windowSurface.blit(gildi1, textRect11)
                 if event.ui_element == horiz_slider1:
-                    value1 = round(horiz_slider.get_current_value())
+                    value1 = round(horiz_slider1.get_current_value())
                     print(value1)
                 if event.ui_element == horiz_slider2:
-                    value2 = round(horiz_slider.get_current_value())
+                    value2 = round(horiz_slider2.get_current_value())
                     print(value2)
         
             score(value,value1,value2)
