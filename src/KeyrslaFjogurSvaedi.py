@@ -23,8 +23,8 @@ while True:
 
     #clear screen
     u.windowSurface.fill(u.HVITUR)
-    pygame.draw.line(u.windowSurface, u.LATNIR, (400, 0), (400, 400), 1)
-    pygame.draw.line(u.windowSurface, u.LATNIR, (0, 200), (800, 200), 1)
+    pygame.draw.line(u.windowSurface, u.LATNIR, (300, 0), (300, 600), 1)
+    pygame.draw.line(u.windowSurface, u.LATNIR, (0, 300), (600, 300), 1)
 
     #SKOPPA AF VEGG
     h.svaedaskopp_fjogur_svaedi()
