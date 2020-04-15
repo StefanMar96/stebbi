@@ -30,7 +30,7 @@ class Hopur():
         #Lægsta y gildi svæðis
         self.ymin = 0
         #x=250
-        self.x250 = 0
+        self.x200 = 0
 
         #Breyta sem telur fjölda sýktra 
         self.teljasykta = 0
@@ -44,11 +44,6 @@ class Hopur():
         l = 2
         #Fjöldi svæða y
         m = 2
-        #Heildarfjöldi svæða
-        k = 4
-
-        #Fjöldi fólks í hóp
-        #self.n = 25
 
         #Búum til svæði
         for i in range(l):
@@ -81,7 +76,7 @@ class Hopur():
         for e in self.einstaklingur:
             number = u.random_tala()
             if number <= 95:  #Líkur að komast ekki í gegn
-                if (e.x > self.x250-u.radius) and (e.x < self.x250+u.radius):
+                if (e.x > self.x200-u.radius) and (e.x < self.x200+u.radius):
                     e.vx = -1 * e.vx
 
     #Búum til n marga einstaklinga á opnu svæði
@@ -137,9 +132,9 @@ class Hopur():
 
     def syktir_location(self):
         for e in self.einstaklingur:
-            self.x250 = self.xmin + 250
+            self.x200 = self.xmin + 200
             if (e.litur==u.SYKTUR):
-                e.x = random.randrange(0+u.radius, self.x250-u.radius)
+                e.x = random.randrange(0+u.radius, self.x200-u.radius)
 
     def faera(self):
         for e in self.einstaklingur:
@@ -152,6 +147,10 @@ class Hopur():
     def breyting_timi(self):
         for e in self.einstaklingur:
             e.breyting_timi()
+
+    def greina_smit(self):
+        for e in self.einstaklingur:
+            e.einangrun()
 
 
 
