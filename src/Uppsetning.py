@@ -12,6 +12,7 @@ class Uppsetning():
         self.SYKTUR = (255, 153, 51)#veikir
         self.BATNAD = (255, 0, 255)#ekki lengur veikir
         self.LATNIR = (0, 0, 0) #látnir 
+        self.EINANGRUN = (255,0,0) #Einstaklingar í einangrun
 
         self.radius = 5
         self.xBORD = 600 
