@@ -159,10 +159,9 @@ while True:
                 if event.ui_element == horiz_slider2:
                     value2 = round(horiz_slider2.get_current_value())
                     print(value2)
-        
-            score(value,value1,value2)
 
         manager.process_events(event)
+    score(value,value1,value2)
     manager.update(time_delta)
 
     u.windowSurface.blit(background, (0, 0))
