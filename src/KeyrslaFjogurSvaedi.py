@@ -40,6 +40,9 @@ while True:
 
     #Látum bolta skoppa af hvor öðrum
     h.arekstur()
+
+    #Sum smit eru greind og þeir einstaklingar eru sendir í einangrun
+    h.greina_smit()
            
     #event handling
     for event in pygame.event.get():
