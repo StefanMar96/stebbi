@@ -43,12 +43,11 @@ class Einstaklingur():
                 number = u.random_tala()
                 if (number > 95):
                     self.litur = u.EINANGRUN
-                if seconds > 20:
-                    self.litur = u.SYKTUR
+                    self.breyting_timi()
 
     def breyting_timi(self):
         seconds=(pygame.time.get_ticks()-self.timi)/1000
-        if(self.litur == u.SYKTUR):
+        if(self.litur == u.SYKTUR or self.litur == u.EINANGRUN):
             if seconds>20:
                 number = u.random_tala()
                 if number > 5:
@@ -67,6 +66,8 @@ class Einstaklingur():
         if(self.litur!=u.LATNIR and self.litur!=u.EINANGRUN):
             self.x += self.vx
             self.y += self.vy
+
+
 
 
 
