@@ -85,7 +85,7 @@ class KeyrslaFjogurSvaedi():
 
             h.talningar()
 
-            talningar_display(h.teljaheilbrigda,h.teljasykta,h.teljabatnad,h.teljalatna)
+            talningar_display(h.teljaheilbrigda,h.teljasykta,h.teljaeinangrun,h.teljabatnad,h.teljalatna)
 
                    
             #event handling
