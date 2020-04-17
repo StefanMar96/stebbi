@@ -26,7 +26,6 @@ class KeyrslaFjogurSvaedi():
 
         fjoldiH = fontTeljarar.render('Fjöldi heilbrigðra:', True, u.HEILBRIGDUR, u.HVITUR)
         fjoldiS = fontTeljarar.render('Fjöldi sýktra:', True, u.SYKTUR, u.HVITUR)
-        fjoldiE = fontTeljarar.render('Fjöldi í einangrun:', True, u.EINANGRUN, u.HVITUR)
         fjoldiB = fontTeljarar.render('Fjöldi óvirkra smita:', True, u.BATNAD, u.HVITUR)
         fjoldiL = fontTeljarar.render('Fjöldi látinna:', True, u.LATNIR, u.HVITUR)
 
@@ -34,26 +33,23 @@ class KeyrslaFjogurSvaedi():
         textRect6.center = (700,615)
 
         textRect7 = fjoldiS.get_rect() 
-        textRect7.center = (700,645)
-
-        textRect8 = fjoldiE.get_rect() 
-        textRect8.center = (700,675)
+        textRect7.center = (700,655)
 
         textRect9 = fjoldiB.get_rect() 
-        textRect9.center = (700,705)
+        textRect9.center = (700,695)
 
         textRect10 = fjoldiL.get_rect() 
         textRect10.center = (700,735)
 
-        def talningar_display(gildi1,gildi2,gildi3,gildi4):
+        def talningar_display(gildi1,gildi2,gildi3,gildi4,gildi5):
             s1 = fontTeljarar.render(str(gildi1), True, u.HEILBRIGDUR)
             s2 = fontTeljarar.render(str(gildi2), True, u.SYKTUR)
-            s3 = fontTeljarar.render(str(gildi3), True, u.BATNAD)
-            s4 = fontTeljarar.render(str(gildi4), True, u.LATNIR)
+            s4 = fontTeljarar.render(str(gildi4), True, u.BATNAD)
+            s5 = fontTeljarar.render(str(gildi5), True, u.LATNIR)
             u.windowSurface.blit(s1,[900,615])
-            u.windowSurface.blit(s2,[900,645])
-            u.windowSurface.blit(s3,[900,705])
-            u.windowSurface.blit(s4,[900,735])
+            u.windowSurface.blit(s2,[900,655])
+            u.windowSurface.blit(s4,[900,695])
+            u.windowSurface.blit(s5,[900,735])
 
         #Aðal loopan
         while True:
@@ -69,7 +65,6 @@ class KeyrslaFjogurSvaedi():
 
             u.windowSurface.blit(fjoldiH, textRect6)
             u.windowSurface.blit(fjoldiS, textRect7)
-            u.windowSurface.blit(fjoldiE, textRect8)
             u.windowSurface.blit(fjoldiB, textRect9)
             u.windowSurface.blit(fjoldiL, textRect10)
 
