@@ -45,10 +45,11 @@ class Einstaklingur():
     def einangrun(self):
         seconds=(pygame.time.get_ticks()-self.timi)/1000
         if(self.litur == u.SYKTUR):
-            if seconds > 10:
+            if seconds > 8:
                 number = u.random_tala()
-                if (number > 99):
+                if (number > 95):
                     self.litur = u.EINANGRUN
+                    self.talning = 4
                     self.breyting_timi()
 
     def breyting_timi(self):
