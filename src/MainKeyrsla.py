@@ -68,9 +68,9 @@ horiz_slider2 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect
 
 #Svartur rammi með texta
 titilsida = pygame_gui.elements.UITextBox(titill, relative_rect=pygame.Rect((600, 40), (400, 55)), manager=manager)
-titilsida = pygame_gui.elements.UITextBox(opidsvaedi, relative_rect=pygame.Rect((600, 90), (400, 35)), manager=manager)
-titilsida = pygame_gui.elements.UITextBox(lokadsvaedi, relative_rect=pygame.Rect((600, 120), (400, 55)), manager=manager)
-titilsida = pygame_gui.elements.UITextBox(fjogursvaedi, relative_rect=pygame.Rect((600, 170), (400, 35)), manager=manager)
+lysing1 = pygame_gui.elements.UITextBox(opidsvaedi, relative_rect=pygame.Rect((600, 90), (400, 35)), manager=manager)
+lysing2 = pygame_gui.elements.UITextBox(lokadsvaedi, relative_rect=pygame.Rect((600, 120), (400, 55)), manager=manager)
+lysing3 = pygame_gui.elements.UITextBox(fjogursvaedi, relative_rect=pygame.Rect((600, 170), (400, 35)), manager=manager)
 
 # create a font object. 
 # 1st parameter is the font file 
