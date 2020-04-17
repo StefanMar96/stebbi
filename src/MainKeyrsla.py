@@ -36,34 +36,41 @@ pygame.display.set_caption('Covid-19 hermir')
 manager = pygame_gui.UIManager((u.xSkjar, u.ySkjar))
 
 #Texti í svarta rammanum
-titill = "Útfærðar hafa verið þrjár mismunandi hermanir fyrir útbreiðslu COVID-19 veirunnar."
+titill = "Útfærðar hafa verið þrjár mismunandi hermanir fyrir útbreiðslu COVID-19 veirunnar"
+opidsvaedi = "1: Óhindruð útbreiðsla veirunnar"
+lokadsvaedi = "2: Valinn hópur er í sóttkví en einhverjir svindla svindla"
+fjogursvaedi = "3: Óhindruð útbreiðsla á fjórum svæðum samhliða"
+
 
 #TAKKAR
-opid_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((600, 520), (100, 50)),
+opid_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((600, 545), (100, 50)),
                                             text='1',
                                             manager=manager)
 
-lokad_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((750, 520), (100, 50)),
+lokad_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((750, 545), (100, 50)),
                                             text='2',
                                             manager=manager)
 
-fjogur_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((900, 520), (100, 50)),
+fjogur_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((900, 545), (100, 50)),
                                             text='3',
                                             manager=manager)
 
 #SLIDERS
-horiz_slider = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((700, 225), (200, 50)),
-                                                    start_value = 10, value_range=(10,100),
+horiz_slider = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((700, 255), (200, 50)),
+                                                    start_value = 10, value_range=(10,200),
                                             manager=manager)
-horiz_slider1 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((700, 325), (200, 50)),
+horiz_slider1 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((700, 355), (200, 50)),
                                                     start_value = 10, value_range=(5,95),
                                             manager=manager)
-horiz_slider2 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((700, 425), (200, 50)),
+horiz_slider2 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((700, 455), (200, 50)),
                                                     start_value = 10, value_range=(10,100),
                                             manager=manager)
 
 #Svartur rammi með texta
 titilsida = pygame_gui.elements.UITextBox(titill, relative_rect=pygame.Rect((600, 40), (400, 55)), manager=manager)
+titilsida = pygame_gui.elements.UITextBox(opidsvaedi, relative_rect=pygame.Rect((600, 90), (400, 35)), manager=manager)
+titilsida = pygame_gui.elements.UITextBox(lokadsvaedi, relative_rect=pygame.Rect((600, 120), (400, 55)), manager=manager)
+titilsida = pygame_gui.elements.UITextBox(fjogursvaedi, relative_rect=pygame.Rect((600, 170), (400, 35)), manager=manager)
 
 # create a font object. 
 # 1st parameter is the font file 
@@ -87,16 +94,16 @@ textRect1 = fyrirsogn.get_rect()
 textRect1.center = (800,20)
 
 textRect2 = val1.get_rect() 
-textRect2.center = (800,200)
+textRect2.center = (800,230)
 
 textRect3 = val2.get_rect() 
-textRect3.center = (800,300)
+textRect3.center = (800,330)
 
 textRect4 = val3.get_rect() 
-textRect4.center = (800,400)
+textRect4.center = (800,430)
 
 textRect5 = byrja.get_rect() 
-textRect5.center = (800,500)
+textRect5.center = (800,530)
 
 clock = pygame.time.Clock()
 
@@ -104,9 +111,9 @@ def score(gildi1,gildi2,gildi3):
     s1 = fontTeljarar.render(str(gildi1), True, u.SYKTUR)
     s2 = fontTeljarar.render(str(gildi2), True, u.SYKTUR)
     s3 = fontTeljarar.render(str(gildi3), True, u.SYKTUR)
-    u.windowSurface.blit(s1,[900,240])
-    u.windowSurface.blit(s2,[900,340])
-    u.windowSurface.blit(s3,[900,440])
+    u.windowSurface.blit(s1,[900,270])
+    u.windowSurface.blit(s2,[900,370])
+    u.windowSurface.blit(s3,[900,470])
 
 #Aðal loopan
 while True:
