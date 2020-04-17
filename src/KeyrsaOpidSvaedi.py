@@ -44,15 +44,17 @@ class KeyrslaOpidSvaedi():
         textRect10 = fjoldiL.get_rect() 
         textRect10.center = (700,735)
 
-        def talningar_display(gildi1,gildi2,gildi3,gildi4):
+        def talningar_display(gildi1,gildi2,gildi3,gildi4,gildi5):
             s1 = fontTeljarar.render(str(gildi1), True, u.HEILBRIGDUR)
             s2 = fontTeljarar.render(str(gildi2), True, u.SYKTUR)
-            s3 = fontTeljarar.render(str(gildi3), True, u.BATNAD)
-            s4 = fontTeljarar.render(str(gildi4), True, u.LATNIR)
+            s3 = fontTeljarar.render(str(gildi3), True, u.EINANGRUN)
+            s4 = fontTeljarar.render(str(gildi4), True, u.BATNAD)
+            s5 = fontTeljarar.render(str(gildi5), True, u.LATNIR)
             u.windowSurface.blit(s1,[900,615])
             u.windowSurface.blit(s2,[900,645])
-            u.windowSurface.blit(s3,[900,705])
-            u.windowSurface.blit(s4,[900,735])
+            u.windowSurface.blit(s3,[900,675])
+            u.windowSurface.blit(s4,[900,705])
+            u.windowSurface.blit(s5,[900,735])
 
         #Aðal loopan
         while True:
@@ -69,7 +71,6 @@ class KeyrslaOpidSvaedi():
             u.windowSurface.blit(fjoldiE, textRect8)
             u.windowSurface.blit(fjoldiB, textRect9)
             u.windowSurface.blit(fjoldiL, textRect10)
-            #u.windowSurface.blit(fjoldiL1, textRect11)
 
             #Færa leikmenn á borði
             h.faera()
