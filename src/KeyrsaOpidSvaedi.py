@@ -90,7 +90,7 @@ class KeyrslaOpidSvaedi():
             #Talningar á ástandi einstaklinga
             h.talningar()
 
-            talningar_display(h.teljaheilbrigda,h.teljasykta,h.teljabatnad,h.teljalatna)
+            talningar_display(h.teljaheilbrigda,h.teljasykta,h.teljaeinangrun,h.teljabatnad,h.teljalatna)
 
             #Sum smit eru greind og þeir einstaklingar eru sendir í einangrun
             h.greina_smit()
