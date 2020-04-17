@@ -2,9 +2,13 @@ import sys
 import pygame
 from pygame.locals import *
 import Uppsetning as U
+import Einstaklingur as E
 import Hopur as H
 import pygame
 import pygame_gui
+import KeyrslaOpidSvaedi as K1
+import KeyrslaLokadSvaedi as K2
+import KeyrslaFjogurSvaedi as K3
 
 FRAMES_PER_SECOND = 30
 fpsClock = pygame.time.Clock()
@@ -12,18 +16,19 @@ fpsClock = pygame.time.Clock()
 #Búum til hluti af klösum
 h = H.Hopur()
 u = U.Uppsetning()
+k1 = K1.KeyrslaOpidSvaedi()
+k2 = K2.KeyrslaLokadSvaedi()
+k3 = K3.KeyrslaFjogurSvaedi()
 
 #Upphafsstilling valkvæðra breyta
-value=0
-value1=0
-value2=0
+n=10
+LikurByrja=10
+LikurSmit=10
 
 background = pygame.Surface((u.xSkjar, u.ySkjar))
 
 #SET UP PYGAME
 pygame.init()
-
-h.einstaklingar()
 
 #SET UP WINDOW
 pygame.display.set_caption('Covid-19 hermir')
@@ -48,13 +53,13 @@ fjogur_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((900, 520
 
 #SLIDERS
 horiz_slider = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((700, 225), (200, 50)),
-                                                    start_value = 10, value_range=(0,100),
+                                                    start_value = 10, value_range=(10,100),
                                             manager=manager)
 horiz_slider1 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((700, 325), (200, 50)),
-                                                    start_value = 10, value_range=(0,100),
+                                                    start_value = 10, value_range=(5,95),
                                             manager=manager)
 horiz_slider2 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((700, 425), (200, 50)),
-                                                    start_value = 10, value_range=(0,100),
+                                                    start_value = 10, value_range=(10,100),
                                             manager=manager)
 
 #Svartur rammi með texta
@@ -72,7 +77,7 @@ fontTeljarar = pygame.font.Font('freesansbold.ttf', 14)
 # on which text is drawn on it. 
 fyrirsogn = fontFyrirsogn.render('Hermun á útbreiðslu COVID-19', True, u.SYKTUR, u.HVITUR) 
 val1 = fontAlmennt.render('Veldu fjölda einstaklinga:', True, u.SYKTUR, u.HVITUR) 
-val2 = fontAlmennt.render('Veldu hve margir eru smitaðir í upphafi:', True, u.SYKTUR, u.HVITUR) 
+val2 = fontAlmennt.render('Veldu líkur á að byrja smitaður:', True, u.SYKTUR, u.HVITUR) 
 val3 = fontAlmennt.render('Veldu smitlíkur veirunnar:', True, u.SYKTUR, u.HVITUR) 
 byrja = fontAlmennt.render('Veldu númer hermunar sem þú vilt keyra:', True, u.SYKTUR, u.HVITUR) 
   
@@ -135,33 +140,27 @@ while True:
             if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
                 print("element:", event.ui_element)
                 if event.ui_element == opid_button:
-                    hermun_nr=1
-                    import KeyrslaOpidSvaedi
+                    k1.keyrslaopidsvaedi(n, LikurByrja, LikurSmit)
                     pygame.quit()
                     sys.exit()
                 if event.ui_element == lokad_button:
-                    hermun_nr=2
-                    import KeyrslaLokadSvaedi
+                    k2.keyrslalokadsvaedi(n, LikurByrja, LikurSmit)
                     pygame.quit()
                     sys.exit()
                 if event.ui_element == fjogur_button:
-                    hermun_nr=3
-                    import KeyrslaFjogurSvaedi
+                    k3.keyrslafjogursvaedi(n, LikurByrja, LikurSmit)
                     pygame.quit()
                     sys.exit()
             if event.user_type == pygame_gui.UI_HORIZONTAL_SLIDER_MOVED:
                 if event.ui_element == horiz_slider:
-                    value = round(horiz_slider.get_current_value())
-                    print(value)
+                    n = round(horiz_slider.get_current_value())
                 if event.ui_element == horiz_slider1:
-                    value1 = round(horiz_slider1.get_current_value())
-                    print(value1)
+                    LikurByrja = round(horiz_slider1.get_current_value())
                 if event.ui_element == horiz_slider2:
-                    value2 = round(horiz_slider2.get_current_value())
-                    print(value2)
+                    LikurSmit = round(horiz_slider2.get_current_value())
 
         manager.process_events(event)
-    score(value,value1,value2)
+    score(n,LikurByrja,LikurSmit)
     manager.update(time_delta)
 
     u.windowSurface.blit(background, (0, 0))
@@ -169,3 +168,6 @@ while True:
 
     pygame.display.update()
     fpsClock.tick(FRAMES_PER_SECOND)
+
+    
+
