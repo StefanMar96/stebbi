@@ -21,6 +21,10 @@ class Hopur():
 
         self.svaedi = []
 
+        self.LikurByrja = 10
+
+        self.LikurSmit = 10
+
         #Hæsta x gildi svæðis
         self.xmax = 0 #u.xmax
         #Hæsta y gildi svæðis
@@ -82,7 +86,7 @@ class Hopur():
     #Búum til n marga einstaklinga á opnu svæði
     def einstaklingar(self):
         for i in range(self.n):
-            e = E.Einstaklingur(u.xBORD, u.yBORD, u.radius)
+            e = E.Einstaklingur(u.xBORD, u.yBORD, u.radius, self.LikurByrja, self.LikurSmit)
             self.einstaklingur.append(e)
 
     #Boltar skoppa af veggjum
@@ -124,11 +128,6 @@ class Hopur():
                 self.teljabatnad += 1
             if(e.talning == 3):
                 self.teljalatna += 1
-        print("H", self.teljaheilbrigda)      
-        print("S", self.teljasykta)
-        print("B", self.teljabatnad)
-        print("L", self.teljalatna)
-
 
     def syktir_location(self):
         for e in self.einstaklingur:
@@ -164,6 +163,7 @@ class Hopur():
         for e in self.einstaklingur:
             e.einangrun()
 
-
-
-
+    def upphafsstilling(self, n, LikurByrja, LikurSmit):
+        self.n = n
+        self.LikurByrja = LikurByrja
+        self.LikurSmit = LikurSmit
