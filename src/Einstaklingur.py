@@ -10,7 +10,7 @@ u = U.Uppsetning()
 
 class Einstaklingur():
 
-    def __init__(self,x,y,radius):
+    def __init__(self,x,y,radius,LikurByrja, LikurSmit):
         self.x = random.randrange(radius, x-radius)
         self.y = random.randrange(radius, y-radius)
         self.vx = random.randrange(-3, 3)
@@ -18,12 +18,18 @@ class Einstaklingur():
         self.litur = u.HEILBRIGDUR
         self.timi = 0
         self.talning = 0
+        self.LikurSmit = LikurSmit
+        self.LikurByrja = LikurByrja
         self.byrjar_syktur()
 
+    def Likur_Byrja(self, LikurByrja):
+        self.LikurByrja = LikurByrja
+    
+    
     #Þetta fall ákvarðar hve margir byrja sýktir
     def byrjar_syktur(self):
         number = u.random_tala()
-        if number >= 95:
+        if number >= (100-self.LikurByrja):
             self.litur = u.SYKTUR
             self.timi=pygame.time.get_ticks()
             self.talning = 1
@@ -31,7 +37,7 @@ class Einstaklingur():
     #Fall sem ákvarðar hvort einstaklingur smitast við árekstur
     def sykist(self):
         number = u.random_tala()
-        if number >= 50:
+        if number >= (100 - self.LikurSmit):
             self.litur = u.SYKTUR
             self.timi=pygame.time.get_ticks()
             self.talning = 1
@@ -41,7 +47,7 @@ class Einstaklingur():
         if(self.litur == u.SYKTUR):
             if seconds > 10:
                 number = u.random_tala()
-                if (number > 95):
+                if (number > 99):
                     self.litur = u.EINANGRUN
                     self.breyting_timi()
 
@@ -66,11 +72,3 @@ class Einstaklingur():
         if(self.litur!=u.LATNIR and self.litur!=u.EINANGRUN):
             self.x += self.vx
             self.y += self.vy
-
-
-
-
-
-
-
-
