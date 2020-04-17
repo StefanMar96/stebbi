@@ -39,6 +39,7 @@ class Hopur():
         #Breyta sem telur fjölda sýktra 
         self.teljasykta = 0
         self.teljabatnad = 0
+        self.teljaeinangrun = 0
         self.teljalatna = 0
         self.teljaheilbrigda = 0
 
@@ -119,6 +120,7 @@ class Hopur():
         self.teljabatnad = 0
         self.teljalatna = 0
         self.teljaheilbrigda = 0
+        self.teljaeinangrun = 0
         for e in self.einstaklingur:
             if(e.talning == 0):
                 self.teljaheilbrigda += 1
@@ -128,6 +130,8 @@ class Hopur():
                 self.teljabatnad += 1
             if(e.talning == 3):
                 self.teljalatna += 1
+            if(e.talning == 4):
+                self.teljaeinangrun +=1
 
     def syktir_location(self):
         for e in self.einstaklingur:
