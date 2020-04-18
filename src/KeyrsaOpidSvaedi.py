@@ -22,6 +22,7 @@ class KeyrslaOpidSvaedi():
         h.einstaklingar()
 
         fontTeljarar = pygame.font.Font('freesansbold.ttf', 14)
+        fontFyrirsogn = pygame.font.Font('freesansbold.ttf', 24) 
 
         fjoldiH = fontTeljarar.render('Fjöldi heilbrigðra:', True, u.HEILBRIGDUR, u.HVITUR)
         fjoldiS = fontTeljarar.render('Fjöldi sýktra:', True, u.SYKTUR, u.HVITUR)
@@ -44,6 +45,52 @@ class KeyrslaOpidSvaedi():
         textRect10 = fjoldiL.get_rect() 
         textRect10.center = (700,735)
 
+        def lysing_display():
+            name = fontFyrirsogn.render("Smit á opnu svæði", True, u.SYKTUR)
+            s1 = fontTeljarar.render("Hermunin sýnir frá því þegar ekki hefur verið sett á", True, u.SYKTUR)
+            s2 = fontTeljarar.render("samkomubann og allir einstaklingar eru frjálsir ferða", True, u.SYKTUR)
+            s3 = fontTeljarar.render("sinna. Einstaklingar ferðast mishratt og sumir eru stopp,", True, u.SYKTUR)
+            s4 = fontTeljarar.render("en það er einfaldlega gert til þess að hermunin", True, u.SYKTUR)
+            s5 = fontTeljarar.render("endurspegli raunveruleikann sem best, sumir hanga", True, u.SYKTUR)
+            s6 = fontTeljarar.render("mikið heima hjá sér á meðan aðrir eru mikið á ferðinni.", True, u.SYKTUR)
+            s7 = fontTeljarar.render(" ", True, u.SYKTUR)
+            s8 = fontTeljarar.render("Heilbrigðir einstaklingar eru táknaðir með bláu og", True, u.SYKTUR)
+            s9 = fontTeljarar.render("þeir sem sýkjast af veirunni eru táknaðir með", True, u.SYKTUR)
+            s10 = fontTeljarar.render("appelsínugulu. Ef einstaklingur greinist með veiruna", True, u.SYKTUR)
+            s11 = fontTeljarar.render("er hann sendur í einangrun, en það gerist aldrei fyrr", True, u.SYKTUR)
+            s12 = fontTeljarar.render("en hann hefur verið sýktur í einhvern tíma, og ekki er", True, u.SYKTUR)
+            s13 = fontTeljarar.render("öruggt að einstaklingur greinist yfirhöfuð.", True, u.SYKTUR)
+            s14 = fontTeljarar.render(" ", True, u.SYKTUR)
+            s15 = fontTeljarar.render("Ef sýktur einstaklingur nær bata fær hann að fara", True, u.SYKTUR)
+            s16 = fontTeljarar.render("aftur út í samfélagið, táknaður sem bleikur, en þá", True, u.SYKTUR)
+            s17 = fontTeljarar.render("getur hann ekki smitast aftur. Ef svo ólíklega vill", True, u.SYKTUR)
+            s18 = fontTeljarar.render("til að einstaklingur lætur lífið í baráttu sinni við", True, u.SYKTUR)
+            s19 = fontTeljarar.render("veiruna litast hann svartur, stöðvast og aðrir", True, u.SYKTUR)
+            s20 = fontTeljarar.render("einstaklingar komast ekki í snertingu við hann.", True, u.SYKTUR)
+
+            u.windowSurface.blit(name,[605,15])
+            u.windowSurface.blit(s1,[605,50])
+            u.windowSurface.blit(s2,[605,70])
+            u.windowSurface.blit(s3,[605,90])
+            u.windowSurface.blit(s4,[605,110])
+            u.windowSurface.blit(s5,[605,130])
+            u.windowSurface.blit(s6,[605,150])
+            u.windowSurface.blit(s7,[605,170])
+            u.windowSurface.blit(s8,[605,190])
+            u.windowSurface.blit(s9,[605,210])
+            u.windowSurface.blit(s10,[605,230])
+            u.windowSurface.blit(s11,[605,250])
+            u.windowSurface.blit(s12,[605,270])
+            u.windowSurface.blit(s13,[605,290])
+            u.windowSurface.blit(s14,[605,310])
+            u.windowSurface.blit(s15,[605,330])
+            u.windowSurface.blit(s16,[605,350])
+            u.windowSurface.blit(s17,[605,370])
+            u.windowSurface.blit(s18,[605,390])
+            u.windowSurface.blit(s19,[605,410])
+            u.windowSurface.blit(s20,[605,430])
+
+        #Setja upp til að birta talningar á skjá
         def talningar_display(gildi1,gildi2,gildi3,gildi4,gildi5):
             s1 = fontTeljarar.render(str(gildi1), True, u.HEILBRIGDUR)
             s2 = fontTeljarar.render(str(gildi2), True, u.SYKTUR)
@@ -56,21 +103,26 @@ class KeyrslaOpidSvaedi():
             u.windowSurface.blit(s4,[900,705])
             u.windowSurface.blit(s5,[900,735])
 
+        descriptioncounter = 0
         #Aðal loopan
         while True:
 
             #clear screen
             u.windowSurface.fill(u.HVITUR)
 
-            #Línur sem skilur hermun frá tölulegum upplýsingum
+            #Línur sem skilja hermun frá tölulegum upplýsingum
             pygame.draw.line(u.windowSurface, u.LATNIR, (600, 750), (600, 0), 1)
             pygame.draw.line(u.windowSurface, u.LATNIR, (0, 600), (1000, 600), 1)
 
+            #Birta talningar á skjá
             u.windowSurface.blit(fjoldiH, textRect6)
             u.windowSurface.blit(fjoldiS, textRect7)
             u.windowSurface.blit(fjoldiE, textRect8)
             u.windowSurface.blit(fjoldiB, textRect9)
             u.windowSurface.blit(fjoldiL, textRect10)
+
+            #Birta texta um hermun
+            lysing_display()
 
             #Færa leikmenn á borði
             h.faera()
@@ -98,6 +150,7 @@ class KeyrslaOpidSvaedi():
             #event handling
             for event in pygame.event.get():
                 if event.type == QUIT:
+                    import MainKeyrsla
                     pygame.quit()
                     sys.exit()
 
