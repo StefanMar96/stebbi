@@ -35,13 +35,6 @@ pygame.display.set_caption('Covid-19 hermir')
 
 manager = pygame_gui.UIManager((u.xSkjar, u.ySkjar))
 
-#Texti í svarta rammanum
-titill = "Útfærðar hafa verið þrjár mismunandi hermanir fyrir útbreiðslu COVID-19 veirunnar"
-opidsvaedi = "1: Óhindruð útbreiðsla veirunnar"
-lokadsvaedi = "2: Valinn hópur er í sóttkví en einhverjir svindla svindla"
-fjogursvaedi = "3: Óhindruð útbreiðsla á fjórum svæðum samhliða"
-
-
 #TAKKAR
 opid_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((600, 545), (100, 50)),
                                             text='1',
@@ -66,11 +59,21 @@ horiz_slider2 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect
                                                     start_value = 10, value_range=(10,100),
                                             manager=manager)
 
-#Svartur rammi með texta
+#Texti í svarta rammanum
+titill = "Útfærðar hafa verið þrjár mismunandi hermanir fyrir útbreiðslu COVID-19 veirunnar"
+opidsvaedi = "1: Óhindruð útbreiðsla veirunnar"
+lokadsvaedi = "2: Valinn hópur er í sóttkví en einhverjir svindla svindla"
+fjogursvaedi = "3: Óhindruð útbreiðsla á fjórum svæðum samhliða"
+
+#Svartir rammar með texta
 titilsida = pygame_gui.elements.UITextBox(titill, relative_rect=pygame.Rect((600, 40), (400, 55)), manager=manager)
 lysing1 = pygame_gui.elements.UITextBox(opidsvaedi, relative_rect=pygame.Rect((600, 90), (400, 35)), manager=manager)
 lysing2 = pygame_gui.elements.UITextBox(lokadsvaedi, relative_rect=pygame.Rect((600, 120), (400, 55)), manager=manager)
 lysing3 = pygame_gui.elements.UITextBox(fjogursvaedi, relative_rect=pygame.Rect((600, 170), (400, 35)), manager=manager)
+titilsida.set_active_effect(pygame_gui.TEXT_EFFECT_FADE_IN)
+lysing1.set_active_effect(pygame_gui.TEXT_EFFECT_FADE_IN)
+lysing2.set_active_effect(pygame_gui.TEXT_EFFECT_FADE_IN)
+lysing3.set_active_effect(pygame_gui.TEXT_EFFECT_FADE_IN)
 
 # create a font object. 
 # 1st parameter is the font file 
