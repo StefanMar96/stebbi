@@ -4,7 +4,7 @@ import numpy as np
 from pygame.locals import *
 import Uppsetning as U
 import Hopur as H
-import graphs as G
+import graphs1 as G
 
 import matplotlib
 matplotlib.use("Agg")
@@ -12,10 +12,11 @@ import matplotlib.pyplot as plt
 import matplotlib.backends.backend_agg as agg
 
 class KeyrslaOpidSvaedi():
+    
     def keyrslaopidsvaedi(self, n, LikurByrja, LikurSmit):
         h = H.Hopur()
-        u = U.Uppsetning()
         g = G.graphs()
+        u = U.Uppsetning()
 
         #fig = plt.figure(figsize=[7, 2]) # 3 inches by 3 inches
         #ax = fig.add_subplot(111)
@@ -26,6 +27,10 @@ class KeyrslaOpidSvaedi():
         self.sykt_coord = []
         self.batnad_coord = []
         self.latnir_coord = []
+        g_heilb = 0
+        g_sykt = 0
+        n_heilb = 0
+        n_sykt = 0
 
         FRAMES_PER_SECOND = 30
         fpsClock = pygame.time.Clock()
@@ -61,16 +66,6 @@ class KeyrslaOpidSvaedi():
 
         textRect10 = fjoldiL.get_rect() 
         textRect10.center = (700,735)
-
-        def talningar_display(gildi1,gildi2,gildi3,gildi4):
-            s1 = fontTeljarar.render(str(gildi1), True, u.HEILBRIGDUR)
-            s2 = fontTeljarar.render(str(gildi2), True, u.SYKTUR)
-            s3 = fontTeljarar.render(str(gildi3), True, u.BATNAD)
-            s4 = fontTeljarar.render(str(gildi4), True, u.LATNIR)
-            u.windowSurface.blit(s1,[900,615])
-            u.windowSurface.blit(s2,[900,645])
-            u.windowSurface.blit(s3,[900,705])
-            u.windowSurface.blit(s4,[900,735])
 
         t=0
 
@@ -108,20 +103,25 @@ class KeyrslaOpidSvaedi():
             #Talningar á ástandi einstaklinga
             h.talningar()
 
-            talningar_display(h.teljaheilbrigda,h.teljasykta,h.teljabatnad,h.teljalatna)
+            self.talningar_display( h.teljaheilbrigda,h.teljasykta,h.teljabatnad,h.teljalatna)
+            n_heilb = h.teljaheilbrigda
+            n_sykt = h.teljasykta
 
+            t+=1
             self.heilb_coord.append(h.teljaheilbrigda)
             self.sykt_coord.append(h.teljasykta)
             self.batnad_coord.append(h.teljabatnad)
             self.latnir_coord.append(h.teljalatna)
-            t+=1
+            
 
-            surf = g.plot(t, np.array(self.heilb_coord), np.array(self.sykt_coord),np.array(self.batnad_coord), np.array(self.latnir_coord))
+            surf = self.plot(h.n, np.array(self.heilb_coord), np.array(self.sykt_coord), np.array(self.batnad_coord), np.array(self.latnir_coord))
             u.windowSurface.blit(surf, (0, 602))
+
+            g_heilb= n_heilb
+            g_sykt = n_sykt
+            
             #Sum smit eru greind og þeir einstaklingar eru sendir í einangrun
             h.greina_smit()
-
-            #g.teikna()
                 
             #event handling
             for event in pygame.event.get():
@@ -132,4 +132,36 @@ class KeyrslaOpidSvaedi():
             pygame.display.update()
             fpsClock.tick(FRAMES_PER_SECOND)
 
+    def talningar_display(self, gildi1,gildi2,gildi3,gildi4):
+        fontTeljarar = pygame.font.Font('freesansbold.ttf', 14)
 
+        u = U.Uppsetning()
+        
+        s1 = fontTeljarar.render(str(gildi1), True, u.HEILBRIGDUR)
+        s2 = fontTeljarar.render(str(gildi2), True, u.SYKTUR)
+        s3 = fontTeljarar.render(str(gildi3), True, u.BATNAD)
+        s4 = fontTeljarar.render(str(gildi4), True, u.LATNIR)
+        u.windowSurface.blit(s1,[900,615])
+        u.windowSurface.blit(s2,[900,645])
+        u.windowSurface.blit(s3,[900,705])
+        u.windowSurface.blit(s4,[900,735])
+
+    def plot(self, n, heilb, sykt, batnad, latnir):
+        #print(latnir)
+        plt.cla()
+        plt.clf()
+        plt.close()
+        fig = plt.figure(figsize=[6, 1.6]) # 3 inches by 3 inches
+        ax = fig.add_subplot(111)
+        canvas = agg.FigureCanvasAgg(fig)
+
+        #ax.plot(x, y, color='black') # plot y vs x as lines
+        #ax.stackplot(n, heilb, sykt, batnad, latnir, colors=['blue', 'orange', 'purple', 'black'], baseline='zero') # stacked plot of vectors y and (y+2)
+        ax.stackplot(n, heilb, sykt,colors=['green','orange'])#, baseline='zero') # stacked plot of vectors y and (y+2)
+
+        canvas.draw()
+        renderer = canvas.get_renderer()
+
+        raw_data = renderer.tostring_rgb()
+        size = canvas.get_width_height()
+        return pygame.image.fromstring(raw_data, size, "RGB")
