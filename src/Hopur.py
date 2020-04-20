@@ -12,8 +12,6 @@ u = U.Uppsetning()
 class Hopur():
 
     def __init__(self):
-        #Færa í sér klasann hópur, gera þar fall með árekstur, sá klasi höndlar 1 svæði
-        #BREYTILEGT
         self.n=100 #number of points
 
         #Listi af einstaklingum
@@ -26,9 +24,9 @@ class Hopur():
         self.LikurSmit = 10
 
         #Hæsta x gildi svæðis
-        self.xmax = 0 #u.xmax
+        self.xmax = 0 
         #Hæsta y gildi svæðis
-        self.ymax = 0 #u.ymax
+        self.ymax = 0 
         #Lægsta x gildi svæðis
         self.xmin = 0
         #Lægsta y gildi svæðis
@@ -171,3 +169,4 @@ class Hopur():
         self.n = n
         self.LikurByrja = LikurByrja
         self.LikurSmit = LikurSmit
+
