@@ -49,7 +49,7 @@ horiz_slider = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect(
                                                     start_value = 10, value_range=(10,100),
                                             manager=manager)
 horiz_slider1 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((700, 355), (200, 50)),
-                                                    start_value = 10, value_range=(5,95),
+                                                    start_value = 10, value_range=(5,50),
                                             manager=manager)
 horiz_slider2 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((700, 455), (200, 50)),
                                                     start_value = 10, value_range=(10,100),
