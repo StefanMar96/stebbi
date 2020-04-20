@@ -138,7 +138,6 @@ while True:
             sys.exit()
         if event.type == pygame.USEREVENT:
             if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
-                print("element:", event.ui_element)
                 if event.ui_element == opid_button:
                     k1.keyrslaopidsvaedi(n, LikurByrja, LikurSmit)
                     pygame.quit()
