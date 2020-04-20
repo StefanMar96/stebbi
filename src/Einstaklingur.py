@@ -16,8 +16,8 @@ class Einstaklingur():
         self.y = random.randrange(ymin+radius, y-radius)
 
         #Hraði einstaklings
-        self.vx = random.randrange(-3, 3)
-        self.vy = random.randrange(-3, 3)
+        self.vx = random.randrange(-6, 6)
+        self.vy = random.randrange(-6, 6)
 
         #Upphafsstilling á ástandi einstaklings
         self.litur = u.HEILBRIGDUR
