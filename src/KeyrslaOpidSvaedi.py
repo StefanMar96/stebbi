@@ -8,6 +8,7 @@ import graphs as G
 
 class KeyrslaOpidSvaedi():
     def keyrslaopidsvaedi(self, n, LikurByrja, LikurSmit):
+        #Búum til hluti af klösunum
         h = H.Hopur()
         u = U.Uppsetning()
         g = G.graphs()
@@ -20,18 +21,20 @@ class KeyrslaOpidSvaedi():
         self.latnir_coord = []
         self.t = []
 
+        #Upphafsstillingar "leikborðs" og tíma
         FRAMES_PER_SECOND = 10
         fpsClock = pygame.time.Clock()
-
-        #SET UP PYGAME
         pygame.init()
-
-        #SET UP WINDOW
         pygame.display.set_caption('Covid-19 hermir')
 
+        #Gildin sem notandi velur send inn í forrit
         h.upphafsstilling(n, LikurByrja, LikurSmit)
+
+        #Einstklingar búnir til
         h.einstaklingar()
 
+        #-------------------------------------------------------
+        #TEXTI Á SKJÁ
         fontTeljarar = pygame.font.Font('freesansbold.ttf', 14)
         fontFyrirsogn = pygame.font.Font('freesansbold.ttf', 24) 
 
@@ -113,12 +116,15 @@ class KeyrslaOpidSvaedi():
             u.windowSurface.blit(s3,[900,675])
             u.windowSurface.blit(s4,[900,705])
             u.windowSurface.blit(s5,[900,735])
-            
+        #-------------------------------------------------------    
+        
+        #Upphafsstilling á gildi fyrir graf
         t=0
+
         #Aðal loopan
         while True:
 
-            #clear screen
+            #Hreinsa skjáinn
             u.windowSurface.fill(u.HVITUR)
 
             #Línur sem skilja hermun frá tölulegum upplýsingum
@@ -141,7 +147,7 @@ class KeyrslaOpidSvaedi():
             #Teikna einstaklinga
             h.teikna()
 
-            #SKOPPA AF VEGG
+            #Skoppa af vegg
             h.veggskopp()
 
             #Látum bolta skoppa af hvor öðrum
@@ -150,10 +156,14 @@ class KeyrslaOpidSvaedi():
             #Skoðum breytingu á tíma frá smiti
             h.breyting_timi()
 
-            #Talningar á ástandi einstaklinga
+            #Sækja talningar á ástandi einstaklinga
             h.talningar()
 
+            #Birta talningarnar á skjánum
             talningar_display(h.teljaheilbrigda,h.teljasykta,h.teljaeinangrun,h.teljabatnad,h.teljalatna)
+
+            #Sum smit eru greind og þeir einstaklingar eru sendir í einangrun
+            h.greina_smit()
 
             #Bæti öllm gildum við í fylki sem plot() notar
             self.t.append(t)
@@ -167,9 +177,6 @@ class KeyrslaOpidSvaedi():
             #Teikna graf
             surf = g.plot(self.t , np.array(self.heilb_coord), np.array(self.sykt_coord), np.array(self.ein_coord), np.array(self.batnad_coord), np.array(self.latnir_coord))
             u.windowSurface.blit(surf, (0, 602))
-            
-            #Sum smit eru greind og þeir einstaklingar eru sendir í einangrun
-            h.greina_smit()
                 
             #event handling
             for event in pygame.event.get():
