@@ -1,12 +1,28 @@
 import sys
 import pygame
+import numpy as np
 from pygame.locals import *
 import Uppsetning as U
 import Hopur as H
+import graphs as G
 
 class KeyrslaFjogurSvaedi():
     def keyrslafjogursvaedi(self, n, LikurByrja, LikurSmit):
 
+        h = H.Hopur()
+        u = U.Uppsetning()
+        g = G.graphs()
+
+        #Búa til fylki fyrir talningu einstaklinga
+        self.heilb_coord = []
+        self.sykt_coord = []
+        self.ein_coord = []
+        self.batnad_coord = []
+        self.latnir_coord = []
+        self.t = []
+
+        t=0 #til þess að telja
+        
         #SET UP PYGAME
         pygame.init()
 
@@ -14,9 +30,6 @@ class KeyrslaFjogurSvaedi():
         pygame.display.set_caption('Covid-19 hermir')
         FRAMES_PER_SECOND = 30
         fpsClock = pygame.time.Clock()
-        
-        h = H.Hopur()
-        u = U.Uppsetning()
 
         h.upphafsstilling(n, LikurByrja, LikurSmit)
         h.fjogur_svaedi_hopar()
@@ -114,6 +127,7 @@ class KeyrslaFjogurSvaedi():
 
             #clear screen
             u.windowSurface.fill(u.HVITUR)
+            
             pygame.draw.line(u.windowSurface, u.LATNIR, (300, 0), (300, 600), 1)
             pygame.draw.line(u.windowSurface, u.LATNIR, (0, 300), (600, 300), 1)
 
@@ -148,11 +162,24 @@ class KeyrslaFjogurSvaedi():
             h.talningar()
 
             talningar_display(h.teljaheilbrigda,h.teljasykta,h.teljaeinangrun,h.teljabatnad,h.teljalatna)
+
+            #Bæti öllm gildum við í fylki sem plot() notar
+            self.t.append(t)
+            t+=1
+            self.heilb_coord.append(h.teljaheilbrigda)
+            self.sykt_coord.append(h.teljasykta)
+            self.ein_coord.append(h.teljaeinangrun)
+            self.batnad_coord.append(h.teljabatnad)
+            self.latnir_coord.append(h.teljalatna)
+            
+            #Teikna graf
+            surf = g.plot(self.t , np.array(self.heilb_coord), np.array(self.sykt_coord), np.array(self.ein_coord), np.array(self.batnad_coord), np.array(self.latnir_coord))
+            u.windowSurface.blit(surf, (0, 602))
                    
             #event handling
             for event in pygame.event.get():
                 if event.type == QUIT:
-                    import MainKeyrsla
+                    import main
                     pygame.quit()
                     sys.exit()
 
