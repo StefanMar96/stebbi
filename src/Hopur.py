@@ -12,7 +12,7 @@ u = U.Uppsetning()
 class Hopur():
 
     def __init__(self):
-        self.n=100 #number of points
+        self.n=0 #number of points
 
         #Listi af einstaklingum
         self.einstaklingur = []
@@ -23,6 +23,7 @@ class Hopur():
 
         self.LikurSmit = 10
 
+        #Hnit fyrir hermun á fjórum svæðum
         #Hæsta x gildi svæðis
         self.xmax = 0 
         #Hæsta y gildi svæðis
@@ -31,10 +32,12 @@ class Hopur():
         self.xmin = 0
         #Lægsta y gildi svæðis
         self.ymin = 0
+
+        #Hnit fyrir svæðið í hermun nr. 2
         #x=250
         self.x200 = 0
 
-        #Breyta sem telur fjölda sýktra 
+        #Breytur sem telja fjölda sýktra 
         self.teljasykta = 0
         self.teljabatnad = 0
         self.teljaeinangrun = 0
@@ -85,7 +88,30 @@ class Hopur():
     #Búum til n marga einstaklinga á opnu svæði
     def einstaklingar(self):
         for i in range(self.n):
-            e = E.Einstaklingur(u.xBORD, u.yBORD, u.radius, self.LikurByrja, self.LikurSmit)
+            e = E.Einstaklingur(0,0,u.xBORD, u.yBORD, u.radius, self.LikurByrja, self.LikurSmit)
+            self.einstaklingur.append(e)
+
+    #Búum til n marga einstaklinga, skipt niður á 4 svæði
+    def einstaklingar_fjogur_svaedi(self):
+        vinstra_uppi = round(self.n/2)
+        vinstra_nidri = round(self.n/5)
+        haegra_uppi = round(self.n/5)
+        haegra_nidri = round(self.n/10)
+
+        if(vinstra_uppi+vinstra_nidri+haegra_uppi+haegra_nidri != self.n):
+            vinstra_uppi += self.n-(vinstra_uppi+vinstra_nidri+haegra_uppi+haegra_nidri)
+
+        for i in range(vinstra_uppi):
+            e = E.Einstaklingur(self.xmin1,self.ymin1,self.xmax1, self.ymax1, u.radius, self.LikurByrja, self.LikurSmit)
+            self.einstaklingur.append(e)
+        for i in range(vinstra_nidri):
+            e = E.Einstaklingur(self.xmin1,self.ymin2,self.xmax1, self.ymax2, u.radius, self.LikurByrja, self.LikurSmit)
+            self.einstaklingur.append(e)
+        for i in range(haegra_uppi):
+            e = E.Einstaklingur(self.xmin2,self.ymin1,self.xmax2, self.ymax1, u.radius, self.LikurByrja, self.LikurSmit)
+            self.einstaklingur.append(e)
+        for i in range(haegra_nidri):
+            e = E.Einstaklingur(self.xmin2,self.ymin2,self.xmax2, self.ymax2, u.radius, self.LikurByrja, self.LikurSmit)
             self.einstaklingur.append(e)
 
     #Boltar skoppa af veggjum
@@ -136,7 +162,7 @@ class Hopur():
             self.x200 = self.xmin + 200
             if (e.litur==u.SYKTUR):
                 e.x = random.randrange(0+u.radius, self.x200-u.radius)
-
+            
     def faera(self):
         for e in self.einstaklingur:
             e.faera()
@@ -169,4 +195,5 @@ class Hopur():
         self.n = n
         self.LikurByrja = LikurByrja
         self.LikurSmit = LikurSmit
+
 
