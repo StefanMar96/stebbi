@@ -2,18 +2,20 @@ https://docs.google.com/document/d/1jzkv8amhN2A46mP6RaeEtNsGtxDVTDwwToBlDqn3OuM/
 
 Lýsing á verkefni:
 
-Ætlum að útfæra nokkrar mismunandi hermanir fyrir COVID-19 sem herjar nú á allan heiminn. Byrjað verður á að forrita grunn sem hreyfir punkta (sem tákna einstaklinga) á skjánum, lætur þá skoppa af veggjum og af hvorum öðrum. Einhverjir einstaklingar eru smitaðir og geta smitað aðra með ákveðnum líkum. 
-Eftir að grunnurinn er tilbúinn getum við skipt verkefninu niður á milli okkar og útfært mismunandi hermunartilfelli sem byggja á þessum grunni.
-Lögð verður áhersla á að fylgja verkáætlun jafnt og þétt á meðan verkefnavinnunni stendur. Einnig verður haldið utanum þá klukkutíma sem hópmeðlimir eyða í verkið.
+Útfærðar verða þrjár mismunandi hermanir fyrir COVID-19 veiruna sem herjar nú á allan heiminn. Byrjað verður á að forrita grunn sem hreyfir punkta (sem tákna einstaklinga) á skjánum, lætur þá skoppa af veggjum og af hvorum öðrum. Eftir að grunnurinn er tilbúinn getum við skipt verkefninu niður á milli okkar og útfært mismunandi hermunartilfelli sem byggja á þessum grunni. Lögð verður áhersla á að fylgja verkáætlun jafnt og þétt á meðan verkefnavinnunni stendur. Einnig verður haldið utanum þá klukkutíma sem hópmeðlimir eyða í verkið.
+	Fyrsta hermunin sýnir frá því þegar ekki hefur verið sett á samkomubann og allir einstaklingar eru frjálsir ferða sinna. Ef einstaklingur greinist með veiruna er hann sendur í einangrun og litaður rauður, en það gerist aldrei fyrr en hann hefur verið sýktur í einhvern tíma og ekki er öruggt að einstaklingur greinist yfirhöfuð. 
+Í hermun númer 2 hefur veiran greinst á ákveðnu svæði og hefur það svæði þar af leiðandi verið sett í sóttkví. Einhverjir einstaklingar eru smitaðir, m.v. líkurnar sem notandi velur í upphafi en ekki er byrjað að skima fyrir veirunni og því greinist enginn með hana. Einstaka einstaklingur tekur þá ákvörðun að svíkjast undan sóttkvínni og halda ótrauður út fyrir sýkta svæðið til að mæta í vinnu og hitta vini sína. Hermunin sýnir hve gríðarlega mikil áhrif það getur haft í för með sér að svíkjast undan sóttkví.
+Þriðja og síðasta hermunin er hermun á opnu svæði á fjórum svæðum samhliða. Allir einstaklingar eru frjálsir ferða sinna innan svæðanna en geta ekki ferðast á milli þeirra. Mis margir byrja smitaðir á hverju svæði fyrir sig og er það markmiðið með hermuninni að sýna hve mismunandi smitáhrif veirunnar eru eftir því hve hátt hlutfall einstaklinga gengur með veiruna. Sýktir einstaklingar halda ferðum sínum áfram þrátt fyrir smit því þeir vita ekki endilega að þeir séu sýktir. Allir sýnatökupinnar á Íslandi eru búnir og þar af leiðandi fer engin skimun fram og enginn er greindur með veiruna. Einnig hafa allir starfsmenn almannavarna sýkst og því er fólk ekki einu sinni sent í sóttkví ef grunur er um smit. Með öðrum orðum: hermunin endurspeglar versta ástand sem hugsast getur. 
+
 
 
 Kröfulýsing
 
-Titill: Smit á opnu svæði
+Titill: Forrita grunn og smit á opnu svæði
 Forgangsröð: 10
 Tími: 10 klst
 
-Titill: Laga kóða
+Titill: Laga til í  kóða
 Forgangsröð: 10
 Tími: 8 klst
 
@@ -21,13 +23,17 @@ Titill: Skipta borði í svæði og láta þau virka
 Forgangsröð: 20
 Tími: 10 klst
 
-Titill: Smit þar sem ákveðið svæði er lokað með litlum líkum á að komast í gegn
+Titill: Útfæra hermun þar sem ákveðið svæði er lokað með litlum líkum á að komast í gegn
 Forgangsröð: 20
 Tími: 5 klst
 
-Titill: Smit þar sem er möguleiki á algjöri einangrun
+Titill: Kóða fall þar sem er möguleiki á algjöri einangrun
 Forgangsröð: 40
 Tími: 5 klst
+
+Titill: Loka tiltekt í kóða
+Forgangsröð: 40
+Tími: 3,5 klst
 
 Titill: Talningar á ástandi fólks
 Forgangsröðun: 40
@@ -35,77 +41,178 @@ Tími: 8 klst
 
 Titill: Framsetning 
 Forgangsröðun: 50
-Tími: 15 klst
+Tími: 31 klst
 
 
-Verkáætlun:
 
-Smit á opnu svæði 10 klst
-1. Fá bolta til að skoppa af vegg 2 klst
-2. Boltar skoppa af hvoru öðrum 4 klst
-3. Boltar lita aðra bolta 4 klst
+Lýsing á hönnun og útfærslu kerfisins
+ 
+Forritspakkarnir sem notaðir voru við forritun kerfisins eru pygame og pygame_gui. Okkur var ráðlagt af kennara strax í upphafi að nota pygame og kunnum við vel við einfaldleika þess og ákváðum því að halda okkur við það. Pygame_gui var síðar meir notað fyrir takka og fleira í notendaviðmóti kerfisins.
+	Kerfið byggir á þremur megin klösum; Uppsetning, Einstaklingur og Hopur. Klasinn Uppsetning heldur utanum almennar breytur sem við notum oft í hinum klösunum, eins og til dæmis litina sem lýsa ástandi einstaklings og hnit skjáborðsins. Einstaklingur klasinn sér um allar aðgerðir einstaklings, svo sem að teikna hann, færa og lita m.v. ástand hans hverju sinni. Klasinn Hopur erfir klasann Einstaklingur. Í honum er búinn til hópur einstaklinga og útfærðar aðgerðir sem eru sameiginlegar fyrir alla einstaklinga, til dæmis að þeir skoppi af hvorum öðrum eða veggjum skjáborðs og svæða. Einnig heldur klasinn utanum talningar á ástandi einstaklinganna í hópnum.
+Svo eru forritin KeyrslaOpidSvaedi.py, KeyrlaLokadSvaedi.py og KeyrlaFjogurSvaedi.py sem keyra föll úr Uppsetning.py Einstaklingur.py og Hopur.py. Þar eru einstaklingar búnir til með því að kalla á h.einstaklingar og svo keyrir while lykkja. While lykkjan keyrist ítrekað á meðan hermunin er í gangi og kallar á viðkomandi föll eftir því hvaða hermun er verið að keyra.
+Main.py er keyrsluskráin, þar er forsíðan sett upp. Á henni eru takkar og texti sem útskýrir virkni forritsins. Þar getur notandi breytt fjölda einstaklinga, líkur á smiti í byrjun hermunnar, líkur á smiti við snertingu og hvaða hermun hann vill keyra. 
+ 
 
-Laga kóða 11 klst
-1. Setja kóða í klasa og föll 11 klst
+Nokkrar skjámyndir sem sýna kerfið í notkun.
+ 
+ 
 
+Kerfisprófanir:
+ 
+Auðkenni: KP01
+Markmið: Athuga hvort rétt hermun keyrist þegar maður smellir á viðkomandi takka.
+Framkvæmd:
+Keyra forrit
+Velja hermun.
+Athuga hvort rétt hermun keyrist.
+Útkoma: Rétt hermun keyrir.
+ 
+Auðkenni: KP02
+Markmið: Athuga hvort gildi á völdum fjölda einstaklinga skili sér inn í kóða.
+Framkvæmd:
+Keyra forrit
+Stilla forrit.
+Skoða fjölda einstaklinga.
+Endurtaka fyrir mismunandi fjölda
+Útkoma: Hermun keyrir með réttum fjölda einstaklinga.
+ 
+Auðkenni: KP03
+Markmið: Athuga hvort gildi á völdum líkum á að byrja sýktir skili sér inn í kóða.
+Framkvæmd:
+Keyra forrit
+Stilla forrit líkur á að byrja sýktur
+Velja hermun.
+Skoða hve margir byrja sýktir
+Endurtaka fyrir mismunandi líkur
+Útkoma: Hermun keyrir með réttum líkum á fjölda sýktra.
+ 
+Auðkenni: KP04
+Markmið: Athuga hvort gildi á völdum smitlíkum veirunnar skili sér inn í kóða.
+Framkvæmd:
+1. Keyra forrit
+2. Stilla forrit.
+3. Skoða hversu oft einstaklingar sýkist við snertingu
+Útkoma: Hermun keyrir og einstaklingar sýkja á við líkurnar sem valdar voru.
+ 
+Auðkenni: KP05
+Markmið: Athuga hvort talningar á ástandi einstaklinga séu réttar
+Framkvæmd:
+Keyra forrit
+Stilla forrit og velja fjölda einstaklinga undir 20 svo auðveldara sé að athuga talningar.
+Keyra einhverja hermun
+Fylgjast með hvort talningarnar niðri í hægra horni séu réttar
+Útkoma: Talningar eru réttar
+ 
+Auðkenni: KP06
+Markmið: Athuga
+Framkvæmd:
 ...
+Útkoma: 
 
 
 
-Verkáætlun:
-
-Smit á opnu svæði 10 klst
-1. Fá bolta til að skoppa af vegg 2 klst
-2. Boltar skoppa af hvoru öðrum 4 klst
-3. Boltar lita aðra bolta 4 klst
-
-Laga kóða 11 klst
-1. Setja kóða í klasa og föll 11 klst
 
 
-Spurningar i tima:
 
-Fá ráðleggingar fyrir klasa
-Eigum við að skipta verkefnum niður eftir lotum?
-Boltar festast saman og við finnum ekki afhverju
-
-6.4.2020:
-Fá kúlur til að skoppa af hvor annarri.
-Ef tími: Hvernig væri sniðugt að skipta borðinu niður í skilgreind svæði?
-
-8.4.2020:
-Fá hugmyndir að hermunum
-Fá hugmyndir að framsetningu
-Einhverjir punktar byrja inní rammanum?
-Hvernig virkar tími? Væri málið að stoppa hermunina eftir x margar sek? 
-Talningar- birting
-Hvernig má einfalda tíma sem fólk læknast
-Hvernig er hægt að telja tíma frá smiti fyrir alla bolta?
+Auðkenni
+Markmið
+Staðið/fallið
+Skýring
+KP01
+Athuga hvort rétt hermun keyrist þegar maður smellir á viðkomandi takka.
+Staðið
 
 
-Tiltekt í kóða 10.4.2020:
-Breyta öllum nöfnum í íslensk nöfn
-Breyta nöfnum á litum í ástand sjúklings
-Færa köll í keyrsluskrám
-Laga breytuheiti t.d. Xmaxx og xmax
-Eyða klasa í keyrsluskrám
-Eyða óþörfum importum
+KP02
+Athuga hvort gildi á völdum fjölda einstaklinga skili sér inn í kóða.
+Staðið
 
 
-Markmið: skila 19.4.2020
-To Do fyrir skil (13.4.2020):
-Bæta hermun á fjórum svæðum (HVERNIG?)
-Hafa einhverjar líkur á að smitaður sé greindur og settur í einangrun
-Stækka hermunargluggann og útfæra framsetningu með flottu notendaviðmóti
-  Talningar á ástandi einstaklinga, bæði tölur og graf
-  Slide takkar svo notandi geti valið ákveðnar breytur
-  Takkar sem skipta á milli hermana
-  Eitt main fall (skrá) sem stjórnar öllum hermunum (ekki 3 eins og núna)
-  Start takki
-Hugmyndir að breytum sem notandi getur stjórnað:
-  Fjöldi einstaklinga á leikborði (1-100)
-  Upphafsfjöldi smitaðra (1-10?)
-  Líkur á smiti?
-  Líkur á að komast í gegnum vegg (smitLokadSvaedi)
+KP03
+Athuga hvort gildi á völdum líkum á að byrja sýktir skili sér inn í kóða.
+Staðið
 
 
+KP04
+Athuga hvort gildi á völdum smitlíkum veirunnar skili sér inn í kóða.
+Staðið
+
+
+KP05
+Athuga hvort talningar á ástandi einstaklinga séu réttar
+Staðið
+
+
+KP06
+ 
+
+
+
+
+
+Stutta lýsingu á framvindu verkefnis og verkáætlun og umfjöllun um vandkvæði sem komu upp við vinnslu þess. Takið fram ef ekki tókst að ljúka við einhverjar notendasögur.
+
+Lýsing á framvindu verkefnisins, verkáætlun og umfjöllum um vandkvæði 
+
+Við byrjuðum snemma á verkefninu og unnum vel, jafnt og þétt…. Setja hér inn samantekt um tímana sem við eyddum í verkefnið… 
+
+
+
+
+
+Verkáætlun
+
+Forrita grunn og smit á opnu svæði - 14 klst
+Verkþættir:
+Fá bolta til að skoppa af vegg - 2 klst
+Boltar skoppa af hvoru öðrum - 8 klst
+Boltar lita aðra bolta - 4 klst
+
+Laga til í kóða - 11 klst
+Verkþættir:
+Setja kóða í klasa og föll - 10 klst
+Skipta klösum í mismunandi skrár - 1 klst
+
+Skipta borði í svæði og láta þau virka - 5,5 klst
+Verkþættir:
+Skilgreina svæði - 2 klst
+Fá einstaklinga til að skoppa innan svæða - 3 klst
+Teikna svæðin - 0,5 klst
+
+Hermun þar sem ákveðið svæði er lokað með litlum líkum á að komast í gegn - 6 klst
+Verkþættir:
+Skilgreina svæði og teikna það - 1 klst
+Fá bolta til að skoppa innan svæðis - 1 klst
+Finna hvernig maður lætur sýkta bara byrja innan svæðis - 3 klst
+Útbúa fall sem sér um hvort einstaklingur komist í gegnum vegg - 1 klst
+
+Smit þar sem er möguleiki á algjöri einangrun - 2 klst
+Verkþættir:
+Útfæra fall sem litar einstakling rauðan (sem táknar einangrun) eftir ákveðnum líkum. Fallið keyrir aftur og aftur eftir að einstaklingur hefur verið sýktur í 10 sekúndur og ef random tala er innan líkanna, er einstaklingur greindur með veiruna og sendur í einangrun - 2 klst
+
+Talningar á ástandi fólks - 2 klst
+Verkþættir:
+Útfæra fall í klasanum Hópur sem heldur utanum talningar - 1 klst
+Útfæra talningar fyrir hvern einstakling og skila í fallið - 0,5 klst
+Prenta út talningar í skipanalínu (í bili) - 0,5 klst
+
+Tiltekt í kóða - 3,5 klst
+Verkþættir:
+Breyta öllum nöfnum í íslensk nöfn - 0,25 klst
+Breyta nöfnum á litum í ástand sjúklings - 0,25 klst
+Færa köll í keyrsluskrám - 2 klst
+Laga breytuheiti t.d. Xmaxx og xmax - 0,5 klst
+Eyða klasa í keyrsluskrám - 0,5 klst
+Eyða óþörfum importum - 0,5 klst
+
+
+Framsetning - 31 klst
+Verkþættir:
+Gera eina keyrsluskrá fyrir öll hermunartilfellin - 6 klst
+Útfæra fallega útlítandi aðal glugga sem birtist í byrjun - 3 klst
+Setja takka og “sliders” á viðkomandi stöðum - 2 klst
+Setja virkni í takka og “sliders” - 4 klst
+Tengja gildi úr “sliders” þannig að þau stjórni hermunum - 2 klst
+Birta talningar á viðeigandi stöðum (eftir hermunum) - 2 klst
+Útfæra graf 8 klst
+Skrifa texta um hverja hermun og birta í viðeigandi glugga. 4 klst
