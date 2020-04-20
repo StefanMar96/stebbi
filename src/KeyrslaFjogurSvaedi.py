@@ -18,9 +18,9 @@ class KeyrslaFjogurSvaedi():
         h = H.Hopur()
         u = U.Uppsetning()
 
-        h.fjogur_svaedi_hopar()
         h.upphafsstilling(n, LikurByrja, LikurSmit)
-        h.einstaklingar()
+        h.fjogur_svaedi_hopar()
+        h.einstaklingar_fjogur_svaedi()
 
         fontTeljarar = pygame.font.Font('freesansbold.ttf', 14)
         fontFyrirsogn = pygame.font.Font('freesansbold.ttf', 24) 
@@ -148,7 +148,6 @@ class KeyrslaFjogurSvaedi():
             h.talningar()
 
             talningar_display(h.teljaheilbrigda,h.teljasykta,h.teljaeinangrun,h.teljabatnad,h.teljalatna)
-
                    
             #event handling
             for event in pygame.event.get():
