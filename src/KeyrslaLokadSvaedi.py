@@ -9,6 +9,7 @@ import graphs as G
 
 class KeyrslaLokadSvaedi():
     def keyrslalokadsvaedi(self, n, LikurByrja, LikurSmit):
+        #Búum til hluti af klösunum
         h = H.Hopur()
         u = U.Uppsetning()
         g = G.graphs()
@@ -21,22 +22,25 @@ class KeyrslaLokadSvaedi():
         self.latnir_coord = []
         self.t = []
 
-        t=0 #Til að telja
+        t=0 #Talningar fyrir graf
     
-        #SET UP PYGAME
+        #Upphafsstillingar "leikborðs" og tíma
         pygame.init()
-
-        #SET UP WINDOW
         pygame.display.set_caption('Covid-19 hermir')
         FRAMES_PER_SECOND = 30
         fpsClock = pygame.time.Clock()
 
+        #Gildin sem notandi velur send inn í forrit
         h.upphafsstilling(n, LikurByrja, LikurSmit)
+
+        #Einstaklingar búnir til
         h.einstaklingar()
 
         #Staðsetning sýktra á lokuðu svæði
         h.syktir_location()
 
+        #-------------------------------------------------------
+        #TEXTI Á SKJÁ
         fontTeljarar = pygame.font.Font('freesansbold.ttf', 14)
         fontFyrirsogn = pygame.font.Font('freesansbold.ttf', 24) 
 
@@ -79,7 +83,6 @@ class KeyrslaLokadSvaedi():
             s18 = fontTeljarar.render("veiruna litast hann svartur, stöðvast og aðrir", True, u.SYKTUR)
             s19 = fontTeljarar.render("einstaklingar komast ekki í snertingu við hann.", True, u.SYKTUR)
 
-
             u.windowSurface.blit(name,[605,15])
             u.windowSurface.blit(s1,[605,50])
             u.windowSurface.blit(s2,[605,70])
@@ -110,11 +113,12 @@ class KeyrslaLokadSvaedi():
             u.windowSurface.blit(s2,[900,655])
             u.windowSurface.blit(s4,[900,695])
             u.windowSurface.blit(s5,[900,735])
+        #-------------------------------------------------------
 
         #Aðal loopan
         while True:
 
-            #clear screen
+            #Hreinsa skjá
             u.windowSurface.fill(u.HVITUR)
             pygame.draw.line(u.windowSurface, u.LATNIR, (200, 600), (200, 0), 1)
 
@@ -122,11 +126,13 @@ class KeyrslaLokadSvaedi():
             pygame.draw.line(u.windowSurface, u.LATNIR, (600, 750), (600, 0), 1)
             pygame.draw.line(u.windowSurface, u.LATNIR, (0, 600), (1000, 600), 1)
 
+            #Birta talningar á borði
             u.windowSurface.blit(fjoldiH, textRect6)
             u.windowSurface.blit(fjoldiS, textRect7)
             u.windowSurface.blit(fjoldiB, textRect9)
             u.windowSurface.blit(fjoldiL, textRect10)
 
+            #Birta lýsingu á hermun
             lysing_display()
                 
             #Færa leikmenn á borði
@@ -135,7 +141,7 @@ class KeyrslaLokadSvaedi():
             #Teikna einstaklinga
             h.teikna()
 
-            #SKOPPA AF VEGG
+            #Skoppa af vegg
             h.veggskopp()
 
             #Skoðum breytingu á tíma frá smiti
@@ -144,11 +150,13 @@ class KeyrslaLokadSvaedi():
             #Látum bolta skoppa af hvor öðrum
             h.arekstur()
 
-            #SKOPPA AF SVÆÐI
+            #Skoppa af svæði
             h.svaedaskopp_eitt_svaedi()
 
+            #Sækja talningar á ástandi fólks
             h.talningar()
 
+            #Birta talningar
             talningar_display(h.teljaheilbrigda,h.teljasykta,h.teljaeinangrun,h.teljabatnad,h.teljalatna)
 
             #Bæti öllm gildum við í fylki sem plot() notar
@@ -173,3 +181,4 @@ class KeyrslaLokadSvaedi():
 
             pygame.display.update()
             fpsClock.tick(FRAMES_PER_SECOND)
+
