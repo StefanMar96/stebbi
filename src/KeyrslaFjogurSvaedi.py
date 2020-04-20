@@ -8,7 +8,7 @@ import graphs as G
 
 class KeyrslaFjogurSvaedi():
     def keyrslafjogursvaedi(self, n, LikurByrja, LikurSmit):
-
+        #Búum til hlut af klösunum
         h = H.Hopur()
         u = U.Uppsetning()
         g = G.graphs()
@@ -21,20 +21,23 @@ class KeyrslaFjogurSvaedi():
         self.latnir_coord = []
         self.t = []
 
-        t=0 #til þess að telja
+        t=0 #til þess að telja fyrir graf
         
-        #SET UP PYGAME
+        #Upphafsstillingar "leikborðs" og tíma
         pygame.init()
-
-        #SET UP WINDOW
         pygame.display.set_caption('Covid-19 hermir')
         FRAMES_PER_SECOND = 30
         fpsClock = pygame.time.Clock()
 
+        #Gildin sem notandi velur send inn í kerfið
         h.upphafsstilling(n, LikurByrja, LikurSmit)
+        #Svæðin búin til
         h.fjogur_svaedi_hopar()
+        #Einstaklingar búnir til innan svæðanna
         h.einstaklingar_fjogur_svaedi()
 
+        #-------------------------------------------------------
+        #TEXTI Á SKJÁ
         fontTeljarar = pygame.font.Font('freesansbold.ttf', 14)
         fontFyrirsogn = pygame.font.Font('freesansbold.ttf', 24) 
 
@@ -121,17 +124,19 @@ class KeyrslaFjogurSvaedi():
             u.windowSurface.blit(s2,[900,655])
             u.windowSurface.blit(s4,[900,695])
             u.windowSurface.blit(s5,[900,735])
+        #-------------------------------------------------------
 
         #Aðal loopan
         while True:
 
-            #clear screen
+            #Hreinsa skjá
             u.windowSurface.fill(u.HVITUR)
             
+            #Línur sem sýna svæðin
             pygame.draw.line(u.windowSurface, u.LATNIR, (300, 0), (300, 600), 1)
             pygame.draw.line(u.windowSurface, u.LATNIR, (0, 300), (600, 300), 1)
 
-            #Línur sem skilur hermun frá tölulegum upplýsingum
+            #Línur sem skilja hermun frá tölulegum upplýsingum
             pygame.draw.line(u.windowSurface, u.LATNIR, (600, 750), (600, 0), 1)
             pygame.draw.line(u.windowSurface, u.LATNIR, (0, 600), (1000, 600), 1)
 
@@ -144,7 +149,7 @@ class KeyrslaFjogurSvaedi():
             #Birtum lýsingu um hermun á spássíðu
             lysing_display()
 
-            #SKOPPA AF VEGG
+            #Skoppa af vegg
             h.svaedaskopp_fjogur_svaedi()
 
             #Færa leikmenn á borði
@@ -153,14 +158,16 @@ class KeyrslaFjogurSvaedi():
             #Teikna einstaklinga
             h.teikna()
 
-            #breyting
+            #Skoðum breytingu á tíma frá smiti
             h.breyting_timi()
 
             #Látum bolta skoppa af hvor öðrum
             h.arekstur()
 
+            #Sækja talningar á ástandi fólks
             h.talningar()
 
+            #Birta talningarnar
             talningar_display(h.teljaheilbrigda,h.teljasykta,h.teljaeinangrun,h.teljabatnad,h.teljalatna)
 
             #Bæti öllm gildum við í fylki sem plot() notar
