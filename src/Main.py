@@ -51,7 +51,7 @@ fjogur_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((900, 545
 
 #SLIDERS
 horiz_slider = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((700, 255), (200, 50)),
-                                                    start_value = 10, value_range=(10,200),
+                                                    start_value = 10, value_range=(10,100),
                                             manager=manager)
 horiz_slider1 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((700, 355), (200, 50)),
                                                     start_value = 10, value_range=(5,95),
