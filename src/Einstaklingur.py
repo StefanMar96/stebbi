@@ -21,10 +21,6 @@ class Einstaklingur():
         self.LikurSmit = LikurSmit
         self.LikurByrja = LikurByrja
         self.byrjar_syktur()
-
-    def Likur_Byrja(self, LikurByrja):
-        self.LikurByrja = LikurByrja
-    
     
     #Þetta fall ákvarðar hve margir byrja sýktir
     def byrjar_syktur(self):
