@@ -9,17 +9,17 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.backends.backend_agg as agg
 
-class graphs():
+class graphs(): 
    h=H.Hopur()
    
-   def plot(self, t, heilb, sykt, ein, batnad, latnir):
+   def plot(self, t, heilb, sykt, ein, batnad, latnir):#í þessu falli er grafið teiknað
       plt.cla()
       plt.clf()
       plt.close()
-      fig = plt.figure(figsize=[6, 1.6]) # 3 inches by 3 inches
-      ax = fig.add_subplot(111)
+      fig = plt.figure(figsize=[6, 1.6]) #stærð plottsins (6*1.6 tommur)
+      ax = fig.add_subplot(111) #höfum 1 subplot
       canvas = agg.FigureCanvasAgg(fig)
-      #ax.stackplot(t , heilb, sykt, batnad, latnir ,colors=['blue', 'orange', 'magenta', 'black'], baseline='zero')
+      #Hér eru gildin tekin og settir eru viðeigandi litir
       ax.stackplot(t , latnir, batnad, ein, sykt, heilb ,colors=['black', 'magenta', 'red', 'orange', 'blue'], baseline='zero')
       canvas.draw()
       renderer = canvas.get_renderer()
