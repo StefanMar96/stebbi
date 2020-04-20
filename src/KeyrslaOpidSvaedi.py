@@ -1,15 +1,26 @@
 import sys
 import pygame
+import numpy as np
 from pygame.locals import *
 import Uppsetning as U
 import Hopur as H
+import graphs as G
 
 class KeyrslaOpidSvaedi():
     def keyrslaopidsvaedi(self, n, LikurByrja, LikurSmit):
         h = H.Hopur()
         u = U.Uppsetning()
+        g = G.graphs()
 
-        FRAMES_PER_SECOND = 30
+        #Búa til fylki fyrir talningu einstaklinga
+        self.heilb_coord = []
+        self.sykt_coord = []
+        self.ein_coord = []
+        self.batnad_coord = []
+        self.latnir_coord = []
+        self.t = []
+
+        FRAMES_PER_SECOND = 10
         fpsClock = pygame.time.Clock()
 
         #SET UP PYGAME
@@ -102,8 +113,8 @@ class KeyrslaOpidSvaedi():
             u.windowSurface.blit(s3,[900,675])
             u.windowSurface.blit(s4,[900,705])
             u.windowSurface.blit(s5,[900,735])
-
-        descriptioncounter = 0
+            
+        t=0
         #Aðal loopan
         while True:
 
@@ -144,13 +155,26 @@ class KeyrslaOpidSvaedi():
 
             talningar_display(h.teljaheilbrigda,h.teljasykta,h.teljaeinangrun,h.teljabatnad,h.teljalatna)
 
+            #Bæti öllm gildum við í fylki sem plot() notar
+            self.t.append(t)
+            t+=1
+            self.heilb_coord.append(h.teljaheilbrigda)
+            self.sykt_coord.append(h.teljasykta)
+            self.ein_coord.append(h.teljaeinangrun)
+            self.batnad_coord.append(h.teljabatnad)
+            self.latnir_coord.append(h.teljalatna)
+            
+            #Teikna graf
+            surf = g.plot(self.t , np.array(self.heilb_coord), np.array(self.sykt_coord), np.array(self.ein_coord), np.array(self.batnad_coord), np.array(self.latnir_coord))
+            u.windowSurface.blit(surf, (0, 602))
+            
             #Sum smit eru greind og þeir einstaklingar eru sendir í einangrun
             h.greina_smit()
                 
             #event handling
             for event in pygame.event.get():
                 if event.type == QUIT:
-                    import MainKeyrsla
+                    import main
                     pygame.quit()
                     sys.exit()
 
