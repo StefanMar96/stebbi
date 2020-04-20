@@ -10,9 +10,9 @@ u = U.Uppsetning()
 
 class Einstaklingur():
 
-    def __init__(self,x,y,radius,LikurByrja, LikurSmit):
-        self.x = random.randrange(radius, x-radius)
-        self.y = random.randrange(radius, y-radius)
+    def __init__(self,xmin,ymin,x,y,radius,LikurByrja, LikurSmit):
+        self.x = random.randrange(xmin+radius, x-radius)
+        self.y = random.randrange(ymin+radius, y-radius)
         self.vx = random.randrange(-3, 3)
         self.vy = random.randrange(-3, 3)
         self.litur = u.HEILBRIGDUR
