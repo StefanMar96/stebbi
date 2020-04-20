@@ -27,6 +27,7 @@ class KeyrslaOpidSvaedi():
         self.sykt_coord = []
         self.batnad_coord = []
         self.latnir_coord = []
+        self.t = []
         g_heilb = 0
         g_sykt = 0
         n_heilb = 0
@@ -69,6 +70,16 @@ class KeyrslaOpidSvaedi():
 
         t=0
 
+        def talningar_display(gildi1,gildi2,gildi3,gildi4):
+            s1 = fontTeljarar.render(str(gildi1), True, u.HEILBRIGDUR)
+            s2 = fontTeljarar.render(str(gildi2), True, u.SYKTUR)
+            s3 = fontTeljarar.render(str(gildi3), True, u.BATNAD)
+            s4 = fontTeljarar.render(str(gildi4), True, u.LATNIR)
+            u.windowSurface.blit(s1,[900,615])
+            u.windowSurface.blit(s2,[900,645])
+            u.windowSurface.blit(s3,[900,705])
+            u.windowSurface.blit(s4,[900,735])
+
         #Aðal loopan
         while True:
 
@@ -103,10 +114,11 @@ class KeyrslaOpidSvaedi():
             #Talningar á ástandi einstaklinga
             h.talningar()
 
-            self.talningar_display( h.teljaheilbrigda,h.teljasykta,h.teljabatnad,h.teljalatna)
+            talningar_display( h.teljaheilbrigda,h.teljasykta,h.teljabatnad,h.teljalatna)
             n_heilb = h.teljaheilbrigda
             n_sykt = h.teljasykta
 
+            self.t.append(t)
             t+=1
             self.heilb_coord.append(h.teljaheilbrigda)
             self.sykt_coord.append(h.teljasykta)
@@ -114,7 +126,7 @@ class KeyrslaOpidSvaedi():
             self.latnir_coord.append(h.teljalatna)
             
 
-            surf = self.plot(h.n, np.array(self.heilb_coord), np.array(self.sykt_coord), np.array(self.batnad_coord), np.array(self.latnir_coord))
+            surf = g.plot(self.t , np.array(self.heilb_coord), np.array(self.sykt_coord), np.array(self.batnad_coord), np.array(self.latnir_coord))
             u.windowSurface.blit(surf, (0, 602))
 
             g_heilb= n_heilb
@@ -132,36 +144,3 @@ class KeyrslaOpidSvaedi():
             pygame.display.update()
             fpsClock.tick(FRAMES_PER_SECOND)
 
-    def talningar_display(self, gildi1,gildi2,gildi3,gildi4):
-        fontTeljarar = pygame.font.Font('freesansbold.ttf', 14)
-
-        u = U.Uppsetning()
-        
-        s1 = fontTeljarar.render(str(gildi1), True, u.HEILBRIGDUR)
-        s2 = fontTeljarar.render(str(gildi2), True, u.SYKTUR)
-        s3 = fontTeljarar.render(str(gildi3), True, u.BATNAD)
-        s4 = fontTeljarar.render(str(gildi4), True, u.LATNIR)
-        u.windowSurface.blit(s1,[900,615])
-        u.windowSurface.blit(s2,[900,645])
-        u.windowSurface.blit(s3,[900,705])
-        u.windowSurface.blit(s4,[900,735])
-
-    def plot(self, n, heilb, sykt, batnad, latnir):
-        #print(latnir)
-        plt.cla()
-        plt.clf()
-        plt.close()
-        fig = plt.figure(figsize=[6, 1.6]) # 3 inches by 3 inches
-        ax = fig.add_subplot(111)
-        canvas = agg.FigureCanvasAgg(fig)
-
-        #ax.plot(x, y, color='black') # plot y vs x as lines
-        #ax.stackplot(n, heilb, sykt, batnad, latnir, colors=['blue', 'orange', 'purple', 'black'], baseline='zero') # stacked plot of vectors y and (y+2)
-        ax.stackplot(n, heilb, sykt,colors=['green','orange'])#, baseline='zero') # stacked plot of vectors y and (y+2)
-
-        canvas.draw()
-        renderer = canvas.get_renderer()
-
-        raw_data = renderer.tostring_rgb()
-        size = canvas.get_width_height()
-        return pygame.image.fromstring(raw_data, size, "RGB")
