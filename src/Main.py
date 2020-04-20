@@ -35,6 +35,7 @@ pygame.display.set_caption('Covid-19 hermir')
 
 manager = pygame_gui.UIManager((u.xSkjar, u.ySkjar))
 
+
 #TAKKAR
 opid_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((600, 545), (100, 50)),
                                             text='1',
@@ -62,10 +63,10 @@ horiz_slider2 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect
 #Texti í svarta rammanum
 titill = "Útfærðar hafa verið þrjár mismunandi hermanir fyrir útbreiðslu COVID-19 veirunnar"
 opidsvaedi = "1: Óhindruð útbreiðsla veirunnar"
-lokadsvaedi = "2: Valinn hópur er í sóttkví en einhverjir svindla svindla"
+lokadsvaedi = "2: Valinn hópur er í sóttkví en einhverjir svindla"
 fjogursvaedi = "3: Óhindruð útbreiðsla á fjórum svæðum samhliða"
 
-#Svartir rammar með texta
+#Svartur rammi með texta
 titilsida = pygame_gui.elements.UITextBox(titill, relative_rect=pygame.Rect((600, 40), (400, 55)), manager=manager)
 lysing1 = pygame_gui.elements.UITextBox(opidsvaedi, relative_rect=pygame.Rect((600, 90), (400, 35)), manager=manager)
 lysing2 = pygame_gui.elements.UITextBox(lokadsvaedi, relative_rect=pygame.Rect((600, 120), (400, 55)), manager=manager)
@@ -141,7 +142,6 @@ while True:
 
     #event handling
     for event in pygame.event.get():
-        hermun_nr = 0
         byrjahermun = False
         if event.type == QUIT:
             pygame.quit()
@@ -173,7 +173,6 @@ while True:
     score(n,LikurByrja,LikurSmit)
     manager.update(time_delta)
 
-    u.windowSurface.blit(background, (0, 0))
     manager.draw_ui(u.windowSurface)
 
     pygame.display.update()
