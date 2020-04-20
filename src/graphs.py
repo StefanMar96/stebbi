@@ -19,8 +19,8 @@ class graphs():
       fig = plt.figure(figsize=[6, 1.6]) # 3 inches by 3 inches
       ax = fig.add_subplot(111)
       canvas = agg.FigureCanvasAgg(fig)
-      #ax.stackplot(t , heilb, sykt, batnad, latnir ,colors=['blue', 'orange', 'purple', 'black'], baseline='zero')
-      ax.stackplot(t , latnir, batnad, ein, sykt, heilb ,colors=['black', 'purple', 'red', 'orange', 'blue'], baseline='zero')
+      #ax.stackplot(t , heilb, sykt, batnad, latnir ,colors=['blue', 'orange', 'magenta', 'black'], baseline='zero')
+      ax.stackplot(t , latnir, batnad, ein, sykt, heilb ,colors=['black', 'magenta', 'red', 'orange', 'blue'], baseline='zero')
       canvas.draw()
       renderer = canvas.get_renderer()
 
