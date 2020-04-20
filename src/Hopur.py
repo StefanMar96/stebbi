@@ -199,4 +199,3 @@ class Hopur():
         self.LikurByrja = LikurByrja
         self.LikurSmit = LikurSmit
 
-
